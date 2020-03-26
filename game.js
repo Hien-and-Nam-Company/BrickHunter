@@ -6,10 +6,7 @@ var isGameOver = false;
 var isGameWin = false;
 var score = 0;
 var weapons = 10;
-var isStart = true;
-var soundFlag = false;
-
-var speedArray = [-5, -4, 4, 5];
+var isStarted = true;
 var gameColor = ['red', 'yellow', 'blue', 'green', 'violet', 'orange', 'pink', 'black', "brown"];
 
 var bullet = {
@@ -18,10 +15,7 @@ var bullet = {
     x: canvas.width - 30 + 15,
     y: canvas.height - 30 + 15,
     s: 2,
-    isMoveLeft: false,
-    isMoveRight: false,
-    isMoveUp: false,
-    isMoveDown: false,
+    color: gameColor[Math.floor(Math.random() * gameColor.length)],
 }
 
 //Bricks 2*offset + col*bricks.side + (col-1)*margin
@@ -32,8 +26,10 @@ var bricks = {
     offset: 0,
     margin: 0,
 };
+var maxScore = bricks.col * bricks.row;
 
 var brickList = [];
+setUpBrickList(brickList);
 function setUpBrickList(list){
     for (var i = 0; i < bricks.row; i++) {
         for (var j = 0; j < bricks.col; j++) {
@@ -46,9 +42,6 @@ function setUpBrickList(list){
         }
     }
 }
-setUpBrickList(brickList);
-
-var maxScore = bricks.col * bricks.row;
 
 function drawBricks() {
     brickList.forEach(function (yam) {
@@ -62,12 +55,15 @@ function drawBricks() {
         }
     });
 }
-function clearCanvas() {
-    context.clearRect(0, 0, canvas.width, canvas.height);
-}
 
-function clearSomething(){
-    context.clearRect(211, 49, canvas.width, canvas.height);
+function drawBullet() {
+    context.beginPath();
+    context.arc(bullet.x, bullet.y, bullet.r, 0, Math.PI * 2);
+    // context.rect(bullet.x, bullet.y, bullet.side, bullet.side);
+    context.stroke();
+    context.fillStyle = bullet.color;
+    context.fill();
+    context.closePath();
 }
 
 document.addEventListener("keyup", function (event) {
@@ -82,25 +78,24 @@ document.addEventListener("keyup", function (event) {
     }
     if (event.key == "ArrowLeft") {
         clearSomething();
-        bullet.x -= 30;
+        // the bullet will be shooted leftward to the brick
+            // if they are the same color, the bullet will break the series of same color brick.
+            // if they are not the same color, the bullet will be stuck the the brick wall
         drawBullet();
     } else if (event.key == "ArrowRight") {
         clearSomething();
-        bullet.x += 30;
+        bullet.color = gameColor[Math.floor(Math.random() * gameColor.length)];
+        weapons--;
         drawBullet();
     }
 })
 
-var bulletColor = gameColor[Math.floor(Math.random() * gameColor.length)];
+function clearCanvas() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+}
 
-function drawBullet() {
-    context.beginPath();
-    context.arc(bullet.x, bullet.y, bullet.r, 0, Math.PI * 2);
-    // context.rect(bullet.x, bullet.y, bullet.side, bullet.side);
-    context.stroke();
-    context.fillStyle = bulletColor;
-    context.fill();
-    context.closePath();
+function clearSomething(){
+    context.clearRect(211, 49, canvas.width, canvas.height);
 }
 
 function drawScore() {
@@ -113,7 +108,7 @@ function drawScore() {
 }
 
 function drawIntroduction() {
-    if (isStart && weapons == 3) {
+    if (isStarted && weapons == 3) {
         context.beginPath();
         context.font = "20px Comic Sans MS";
         context.fillStyle = 'black';
