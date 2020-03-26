@@ -7,7 +7,7 @@ var isGameWin = false;
 var score = 0;
 var weapons = 5;
 var isStarted = true;
-var gameColor = ['red', 'yellow', 'blue', 'green', 'violet', 'orange', 'pink', 'black', "brown"];
+var gameColor = ['red', 'yellow', 'blue', 'green', 'violet', 'orange'];
 
 var bullet = {
     side: 30,
