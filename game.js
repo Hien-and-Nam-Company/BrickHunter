@@ -91,9 +91,6 @@ document.addEventListener("keydown", function (event) {
             bullet.isCanShoot = false;
             bullet.isShoot = true;
         }      
-        // the bullet will be shooted leftward to the brick
-        // if they are the same color, the bullet will break the series of same color brick.
-        // if they are not the same color, the bullet will be stuck the the brick wall
         drawBullet();
     } else if (event.key == "ArrowRight") {
         clearSomething();
