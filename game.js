@@ -5,7 +5,7 @@ var sound = document.getElementById('sound');
 var isGameOver = false;
 var isGameWin = false;
 var score = 0;
-var weapons = 10;
+var weapons = 5;
 var isStarted = true;
 var gameColor = ['red', 'yellow', 'blue', 'green', 'violet', 'orange', 'pink', 'black', "brown"];
 
@@ -108,7 +108,7 @@ function drawScore() {
 }
 
 function drawIntroduction() {
-    if (isStarted && weapons == 3) {
+    if (isStarted && weapons == 5) {
         context.beginPath();
         context.font = "20px Comic Sans MS";
         context.fillStyle = 'black';
