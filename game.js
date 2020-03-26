@@ -15,6 +15,8 @@ var bullet = {
     x: canvas.width - 30 + 15,
     y: canvas.height - 30 + 15,
     s: 2,
+    isShoot: false,
+    isCanShoot: true,
     color: gameColor[Math.floor(Math.random() * gameColor.length)],
 }
 
@@ -34,6 +36,8 @@ function setUpBrickList(list) {
     for (var i = 0; i < bricks.row; i++) {
         for (var j = 0; j < bricks.col; j++) {
             brickList.push({
+                row: i,
+                col: j,
                 x: j * (bricks.side + bricks.margin) + bricks.offset,
                 y: i * (bricks.side + bricks.margin) + bricks.offset + 50,
                 isBroken: false,
@@ -44,7 +48,7 @@ function setUpBrickList(list) {
 }
 
 function drawBricks() {
-    brickList.forEach(function (yam) {
+    brickList.forEach(function(yam) {
         if (!yam.isBroken) {
             context.beginPath();
             context.rect(yam.x, yam.y, bricks.side, bricks.side);
@@ -66,7 +70,7 @@ function drawBullet() {
     context.closePath();
 }
 
-document.addEventListener("keyup", function (event) {
+document.addEventListener("keydown", function (event) {
     if (event.key == "ArrowUp") {
         if (canBulletMoveUp()) {
             clearSomething();
@@ -83,6 +87,10 @@ document.addEventListener("keyup", function (event) {
     }
     if (event.key == "ArrowLeft") {
         clearSomething();
+        if(bullet.isCanShoot){
+            bullet.isCanShoot = false;
+            bullet.isShoot = true;
+        }      
         // the bullet will be shooted leftward to the brick
         // if they are the same color, the bullet will break the series of same color brick.
         // if they are not the same color, the bullet will be stuck the the brick wall
@@ -94,6 +102,7 @@ document.addEventListener("keyup", function (event) {
         drawBullet();
     }
 })
+
 
 function canBulletMoveUp() {
     return (bullet.y >= 80);
@@ -131,15 +140,44 @@ function drawIntroduction() {
     }
 }
 
-function draw() {
-    if (!isGameOver && !isGameWin) {
-        clearCanvas();
-        drawBullet();
-        drawBricks();
-        drawScore();
-        drawIntroduction();
-        requestAnimationFrame(draw);
+function collisionBulletBrick(){
+    brickList.forEach(function(currentBrick){
+        if(!currentBrick.isBroken){
+            if(currentBrick.x + bricks.side >= bullet.x- bullet.r
+                && currentBrick.y >= bullet.y - bullet.r && currentBrick.y < bullet.y + bullet.r){
+                if(currentBrick.color == bullet.color){
+                    currentBrick.isBroken = true;
+                } 
+                bullet.isShoot = false;
+            }
+        }       
+    })  
+}
+
+function collisionBulletWall(){
+    if(bullet.x - bullet.r < 0){
+        bullet.isShoot = false;
+    } else if(bullet.x + bullet.r >= canvas.width){
+        bullet.x = 400;
+        bullet.isCanShoot = true;
     }
 }
 
+function draw() {
+    if (!isGameOver && !isGameWin) {
+        clearCanvas();
+
+        if(bullet.isShoot){
+            bullet.x -= 5;
+        } else bullet.x += 5;
+        
+        drawBullet();
+        collisionBulletBrick();
+        collisionBulletWall();
+        drawBricks();
+        drawScore();    
+        drawIntroduction();
+        requestAnimationFrame(draw);
+    }
+} 
 draw();
