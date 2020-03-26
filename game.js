@@ -150,8 +150,8 @@ function collisionBulletBrick(){
                     var a = currentBrick.col;
                     var b = currentBrick.row;
                     for(var i = 0; i < bricks.row; i++){
-                        if(brickList[a+7*i].row < b){
-                            brickList[a+7*i].y += 30;
+                        if(brickList[a+bricks.col*i].row < b){
+                            brickList[a+bricks.col*i].y += bricks.side;
                         }
                     }
                 } 
