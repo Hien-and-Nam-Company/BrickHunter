@@ -30,7 +30,7 @@ var maxScore = bricks.col * bricks.row;
 
 var brickList = [];
 setUpBrickList(brickList);
-function setUpBrickList(list){
+function setUpBrickList(list) {
     for (var i = 0; i < bricks.row; i++) {
         for (var j = 0; j < bricks.col; j++) {
             brickList.push({
@@ -68,19 +68,24 @@ function drawBullet() {
 
 document.addEventListener("keyup", function (event) {
     if (event.key == "ArrowUp") {
-        clearSomething();
-        bullet.y -= 30;
-        drawBullet();
+        if (canBulletMoveUp()) {
+            clearSomething();
+            bullet.y -= 30;
+            drawBullet();
+        }
+
     } else if (event.key == "ArrowDown") {
-        clearSomething();
-        bullet.y += 30;
-        drawBullet();
+        if (canBulletMoveDown()) {
+            clearSomething();
+            bullet.y += 30;
+            drawBullet();
+        }
     }
     if (event.key == "ArrowLeft") {
         clearSomething();
         // the bullet will be shooted leftward to the brick
-            // if they are the same color, the bullet will break the series of same color brick.
-            // if they are not the same color, the bullet will be stuck the the brick wall
+        // if they are the same color, the bullet will break the series of same color brick.
+        // if they are not the same color, the bullet will be stuck the the brick wall
         drawBullet();
     } else if (event.key == "ArrowRight") {
         clearSomething();
@@ -90,11 +95,19 @@ document.addEventListener("keyup", function (event) {
     }
 })
 
+function canBulletMoveUp() {
+    return (bullet.y >= 80);
+}
+
+function canBulletMoveDown() {
+    return (bullet.y <= canvas.height - 30)
+}
+
 function clearCanvas() {
     context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-function clearSomething(){
+function clearSomething() {
     context.clearRect(211, 49, canvas.width, canvas.height);
 }
 
@@ -125,7 +138,6 @@ function draw() {
         drawBricks();
         drawScore();
         drawIntroduction();
-        moveBullet();
         requestAnimationFrame(draw);
     }
 }
