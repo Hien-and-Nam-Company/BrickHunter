@@ -147,6 +147,13 @@ function collisionBulletBrick(){
                 && currentBrick.y >= bullet.y - bullet.r && currentBrick.y < bullet.y + bullet.r){
                 if(currentBrick.color == bullet.color){
                     currentBrick.isBroken = true;
+                    var a = currentBrick.col;
+                    var b = currentBrick.row;
+                    for(var i = 0; i < bricks.row; i++){
+                        if(brickList[a+7*i].row < b){
+                            brickList[a+7*i].y += 30;
+                        }
+                    }
                 } 
                 bullet.isShoot = false;
             }
@@ -170,7 +177,7 @@ function draw() {
         if(bullet.isShoot){
             bullet.x -= 5;
         } else bullet.x += 5;
-        
+
         drawBullet();
         collisionBulletBrick();
         collisionBulletWall();
