@@ -147,18 +147,42 @@ function collisionBulletBrick(){
                 && currentBrick.y >= bullet.y - bullet.r && currentBrick.y < bullet.y + bullet.r){
                 if(currentBrick.color == bullet.color){
                     currentBrick.isBroken = true;
-                    var a = currentBrick.col;
-                    var b = currentBrick.row;
-                    for(var i = 0; i < bricks.row; i++){
-                        if(brickList[a+bricks.col*i].row < b){
-                            brickList[a+bricks.col*i].y += bricks.side;
-                        }
-                    }
+                    checkUp(currentBrick.x, currentBrick.y, currentBrick.color);
+                    checkDown(currentBrick.x, currentBrick.y, currentBrick.color);
+                    down(currentBrick.row, currentBrick.col);
                 } 
                 bullet.isShoot = false;
             }
         }       
     })  
+}
+
+function down(row, col){
+    for(var i = 0; i < bricks.row; i++){
+        if(brickList[col+bricks.col*i].row < row){
+            brickList[col+bricks.col*i].y += bricks.side;
+        }
+    }
+}
+
+function checkUp(x, y, color){
+    brickList.forEach(function(currentBrick){
+        if(currentBrick.x == x && currentBrick.y == y - bricks.side && currentBrick.color == color){
+            currentBrick.isBroken = true; 
+            checkUp(currentBrick.x, currentBrick.y, currentBrick.color);      
+            down(currentBrick.row, currentBrick.col);           
+        }
+    })
+}
+
+function checkDown(x, y, color){
+    brickList.forEach(function(currentBrick){
+        if(currentBrick.x == x && currentBrick.y == y + bricks.side && currentBrick.color == color){
+            currentBrick.isBroken = true; 
+            checkDown(currentBrick.x, currentBrick.y, currentBrick.color);        
+            down(currentBrick.row, currentBrick.col);           
+        }
+    })
 }
 
 function collisionBulletWall(){
