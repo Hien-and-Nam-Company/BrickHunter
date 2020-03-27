@@ -12,27 +12,37 @@ var brickSide = 30;
 var wallOffset = 50;
 var wall = [];
 
-function setupAndDrawWall() {
-    // Setup wall
+function setupWall() {
     for (var i = 0; i < cols; i++) {
         wall[i] = [];
         for (var j = 0; j < rows; j++) {
-            var x = i * 30;
-            var y = j * 30 + 50;
+            var x = i * brickSide;
+            var y = j * brickSide + wallOffset;
             var color = randomColor();
             wall[i][j] = new Brick(x, y, i, j, color);
-    // Draw wall
-            context.beginPath();
-            context.rect(wall[i][j].x, wall[i][j].y, brickSide, brickSide);
-            context.stroke();
-            context.fillStyle = wall[i][j].color;
-            context.fill();
-            context.closePath();
         }
     }
 }
 
-setupAndDrawWall();
-console.log(wall[2][5].brickName);
-console.log(wall[4][9].brickName);
-console.log(wall[6][14].brickName);
+function drawWall(){
+    for(var i = 0; i < cols; i++){
+        for(var j = 0; j < rows; j++){
+            context.beginPath();
+                context.rect(wall[i][j].x, wall[i][j].y, brickSide, brickSide);
+                context.stroke();
+                context.fillStyle = wall[i][j].color;
+                context.fill();
+                context.closePath();
+        }
+    }
+}
+
+setupWall();
+
+function draw(){  
+    drawWall();
+
+    requestAnimationFrame(draw);
+}
+
+draw();
