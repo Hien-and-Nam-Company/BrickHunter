@@ -33,4 +33,6 @@ function setupAndDrawWall() {
 }
 
 setupAndDrawWall();
-console.log(wall[2][4].brickName);
+console.log(wall[2][5].name);
+console.log(wall[4][9].name);
+console.log(wall[6][14].name);

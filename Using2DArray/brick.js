@@ -18,10 +18,10 @@ class Brick {
     }
 
     get rowName() {
-        return ++this.col;
+        return (++this.row);
     }
 
-    get brickName() {
-        return this.colName + this.row;
+    get name() {
+        return this.colName + this.rowName;
     }
 }
