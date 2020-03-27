@@ -139,7 +139,6 @@ function draw() {
     drawWeapon();
     moveBullet();
     collisionBulletBrick();
-
     requestAnimationFrame(draw);
 }
 

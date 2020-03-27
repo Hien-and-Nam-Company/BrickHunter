@@ -8,17 +8,19 @@ class Brick {
     }
 
     get colName() {
-        if (this.col == 0) return 'A';
-        if (this.col == 1) return 'B';
-        if (this.col == 2) return 'C';
-        if (this.col == 3) return 'D';
-        if (this.col == 4) return 'E';
-        if (this.col == 5) return 'F';
-        if (this.col == 6) return 'G';
+        switch (this.col) {
+            case 0: return 'A';
+            case 1: return 'B';
+            case 2: return 'C';
+            case 3: return 'D';
+            case 4: return 'E';
+            case 5: return 'F';
+            case 6: return 'G';
+        }
     }
 
     get rowName() {
-        return (++this.row);
+        return ++this.row;
     }
 
     get brickName() {
