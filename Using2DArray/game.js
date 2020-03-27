@@ -17,8 +17,8 @@ function setupAndDrawWall() {
     for (var i = 0; i < cols; i++) {
         wall[i] = [];
         for (var j = 0; j < rows; j++) {
-            var x = i * 30;
-            var y = j * 30 + 50;
+            var x = i * brickSide;
+            var y = j * brickSide + wallOffset;
             var color = randomColor();
             wall[i][j] = new Brick(x, y, i, j, color);
     // Draw wall
@@ -33,6 +33,6 @@ function setupAndDrawWall() {
 }
 
 setupAndDrawWall();
-console.log(wall[2][5].name);
+console.log(wall[2][5].x);
 console.log(wall[4][9].name);
 console.log(wall[6][14].name);
