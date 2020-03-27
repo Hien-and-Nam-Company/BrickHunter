@@ -7,7 +7,7 @@ function randomColor() {
 }
 
 var cols = 7;
-var rows = 15;
+var rows = 14;
 var brickSide = 30;
 var wallOffset = 50;
 var wall = [];
@@ -25,7 +25,7 @@ var bullet = {
     y: weapon.y + weapon.height / 2,
     dx: 0,
     r: 10,
-    speed: 2,
+    speed: 10,
     color: weapon.color,
     canShot: true,
 }
@@ -66,7 +66,7 @@ document.addEventListener("keydown", function (event) {
 })
 
 document.addEventListener("keyup", function (event) {
-    if (event.keyCode == 32 && bullet.canShot) {
+    if (event.keyCode == 37 && bullet.canShot) { // space keyCode: 32
         bullet.canShot = false;
         bullet.color = weapon.color;
         weapon.color = randomColor();
