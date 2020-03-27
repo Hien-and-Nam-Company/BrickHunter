@@ -12,13 +12,7 @@ var brickSide = 30;
 var wallOffset = 50;
 var wall = [];
 
-var weapon = {
-    width: 60,
-    height: 90,
-    x: canvas.width - 60,
-    y: canvas.height - 90,
-    color: randomColor(),
-}
+var weapon = new Weapon();
 
 var bullet = {
     x: weapon.x + 10,
@@ -42,26 +36,12 @@ function drawBullet(x, y) {
     bullet.y = y;
 }
 
-function drawWeapon() {
-    context.beginPath();
-    context.rect(weapon.x + weapon.width / 2, weapon.y, weapon.width / 2, weapon.height);
-    context.rect(weapon.x, weapon.y + weapon.height / 3, weapon.width / 2, weapon.height / 3);
-    context.stroke();
-    context.fillStyle = weapon.color;
-    context.fill();
-    context.closePath();
-}
-
 document.addEventListener("keydown", function (event) {
     if (event.keyCode == 38) {
-        if (weapon.y >= wallOffset + brickSide - weapon.height / 3) {
-            weapon.y -= 30;
-        }
+        weapon.moveUp();
     }
     if (event.keyCode == 40) {
-        if (weapon.y + weapon.height <= canvas.height - brickSide + weapon.height / 3) {
-            weapon.y += 30;
-        }
+        weapon.moveDown();
     }
 })
 
@@ -136,7 +116,7 @@ setupWall();
 function draw() {
     clearCanvas();
     drawWall();
-    drawWeapon();
+    weapon.draw();
     moveBullet();
     collisionBulletBrick();
     requestAnimationFrame(draw);
