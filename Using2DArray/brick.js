@@ -16,12 +16,12 @@ class Brick {
         if (this.col == 5) return 'F';
         if (this.col == 6) return 'G';
     }
-    
+
     get rowName() {
-        return ++ this.col;
+        return ++this.col;
     }
 
-    get brickName(){
+    get brickName() {
         return this.colName + this.row;
     }
 }
