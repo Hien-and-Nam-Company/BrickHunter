@@ -15,49 +15,79 @@ var wall = [];
 var weapon = {
     width: 60,
     height: 90,
-    x: canvas.width - 60,  
-    y: canvas.height - 90, 
-    speed: 5,  
-    isUp: false,
-    isDown: false,
+    x: canvas.width - 60,
+    y: canvas.height - 90,
     color: 'black',
+}
+
+var bullet = {
+    x: weapon.x - 30,
+    y: weapon.y + weapon.height / 2,
+    dx: 0,
+    r: 10,
+    speed: 2,
+    color: 'black',
+    isShot: false,
+    canShot: true,
+}
+
+function drawBullet(x, y) {
+    context.beginPath();
+    context.arc(x + bullet.dx, y, bullet.r, 0, Math.PI * 2);
+    context.stroke();
+    context.fillStyle = bullet.color;
+    context.fill();
+    context.closePath();
+
+    bullet.x = x + bullet.dx;
+    bullet.y = y;
 }
 
 function drawWeapon() {
     context.beginPath();
-    context.rect(weapon.x + weapon.width/2, weapon.y, weapon.width/2, weapon.height);
-    context.rect(weapon.x, weapon.y + weapon.height/3, weapon.width/2, weapon.height/3);
+    context.rect(weapon.x + weapon.width / 2, weapon.y, weapon.width / 2, weapon.height);
+    context.rect(weapon.x, weapon.y + weapon.height / 3, weapon.width / 2, weapon.height / 3);
     context.stroke();
     context.fillStyle = weapon.color;
     context.fill();
     context.closePath();
 }
 
-document.addEventListener("keydown", function(event){
-    // if(event.keyCode == 32){
-
-    // }
-    if(event.keyCode == 38){
-        weapon.isUp = true;
-    } else if(event.keyCode == 40){
-        weapon.isDown = true;
+document.addEventListener("keydown", function (event) {
+    if (event.keyCode == 38) {
+        if (weapon.y >= wallOffset + brickSide - weapon.height / 3) {
+            weapon.y -= 30;
+        }
+    }
+    if (event.keyCode == 40) {
+        if (weapon.y + weapon.height <= canvas.height - brickSide + weapon.height / 3) {
+            weapon.y += 30;
+        }
     }
 })
 
-document.addEventListener("keyup", function(event){
-    if(event.keyCode == 38){
-        weapon.isUp = false;
-    } else if(event.keyCode == 40){
-        weapon.isDown = false;
+document.addEventListener("keyup", function (event) {
+    if (event.keyCode == 32 && bullet.canShot) {
+        bullet.canShot = false;
+        drawBullet(weapon.x - 30, weapon.y + weapon.height / 2);
     }
 })
 
 
-function moveWeapon(){
-    if(weapon.isUp && weapon.y >= wallOffset + weapon.speed - weapon.height/3){
-        weapon.y -= weapon.speed;
-    } else if(weapon.isDown && weapon.y + weapon.height <= canvas.height - weapon.speed + weapon.height/3){
-        weapon.y += weapon.speed;
+function moveBullet() {
+    if (!bullet.canShot) {
+        bullet.x -= bullet.speed;
+        drawBullet(bullet.x, bullet.y);
+    }
+}
+
+function collisionBulletBrick() {
+    for (var i = 0; i < cols; i++) {
+        for (var j = 0; j < rows; j++) {
+            if(wall[i][j].x < bullet.x && wall[i][j].x + brickSide > bullet.x){
+                bullet.canShot = true;
+            }
+        }
     }
 }
 
@@ -86,7 +116,7 @@ function drawWall() {
     }
 }
 
-function clearCanvas(){
+function clearCanvas() {
     context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
@@ -96,7 +126,8 @@ function draw() {
     clearCanvas();
     drawWall();
     drawWeapon();
-    moveWeapon();
+    moveBullet();
+    collisionBulletBrick();
 
     requestAnimationFrame(draw);
 }
