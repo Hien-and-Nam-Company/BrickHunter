@@ -17,17 +17,16 @@ var weapon = {
     height: 90,
     x: canvas.width - 60,
     y: canvas.height - 90,
-    color: 'black',
+    color: randomColor(),
 }
 
 var bullet = {
-    x: weapon.x - 30,
+    x: weapon.x + 10,
     y: weapon.y + weapon.height / 2,
     dx: 0,
     r: 10,
     speed: 2,
-    color: 'black',
-    isShot: false,
+    color: weapon.color,
     canShot: true,
 }
 
@@ -69,7 +68,9 @@ document.addEventListener("keydown", function (event) {
 document.addEventListener("keyup", function (event) {
     if (event.keyCode == 32 && bullet.canShot) {
         bullet.canShot = false;
-        drawBullet(weapon.x - 30, weapon.y + weapon.height / 2);
+        bullet.color = weapon.color;
+        weapon.color = randomColor();
+        drawBullet(weapon.x + 10, weapon.y + weapon.height / 2);
     }
 })
 
@@ -84,8 +85,15 @@ function moveBullet() {
 function collisionBulletBrick() {
     for (var i = 0; i < cols; i++) {
         for (var j = 0; j < rows; j++) {
-            if(wall[i][j].x < bullet.x && wall[i][j].x + brickSide > bullet.x){
-                bullet.canShot = true;
+            if (!wall[i][j].isBroken && wall[i][j].x + brickSide > bullet.x - bullet.r
+                && wall[i][j].y < bullet.y && wall[i][j].y + brickSide > bullet.y) {
+                if (wall[i][j].color == bullet.color) {
+                    bullet.canShot = true;
+                    wall[i][j].isBroken = true;
+                } else {
+                    bullet.canShot = true;
+                }
+
             }
         }
     }
@@ -98,6 +106,7 @@ function setupWall() {
             var x = i * brickSide;
             var y = j * brickSide + wallOffset;
             var color = randomColor();
+            var isBroken = false;
             wall[i][j] = new Brick(x, y, i, j, color);
         }
     }
@@ -106,12 +115,14 @@ function setupWall() {
 function drawWall() {
     for (var i = 0; i < cols; i++) {
         for (var j = 0; j < rows; j++) {
-            context.beginPath();
-            context.rect(wall[i][j].x, wall[i][j].y, brickSide, brickSide);
-            context.stroke();
-            context.fillStyle = wall[i][j].color;
-            context.fill();
-            context.closePath();
+            if (!wall[i][j].isBroken) {
+                context.beginPath();
+                context.rect(wall[i][j].x, wall[i][j].y, brickSide, brickSide);
+                context.stroke();
+                context.fillStyle = wall[i][j].color;
+                context.fill();
+                context.closePath();
+            }
         }
     }
 }
