@@ -24,4 +24,12 @@ class Brick {
     get name() {
         return this.colName + this.rowName;
     }
+
+    get x() {
+        return this.col * brickSide;
+    }
+
+    get y() {
+        return this.row * brickSide + wallOffset;
+    }
 }
