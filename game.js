@@ -27,7 +27,7 @@ function collisionBulletBrick() {
             if ((wall[i][j].isTouchedBy(bullet)) && (wall[i][j].color == bullet.color)) {
                 wall[i][j].setBroken(true);
                 checkAround(i, j, bullet.color);
-                bullet.setCanDestroy(false);               
+                bullet.setCanDestroy(false);
             } else if (wall[i][j].isTouchedBy(bullet)) {
                 bullet.setCanDestroy(false);
             }
@@ -41,6 +41,7 @@ function draw() {
     weapon.draw();
     bullet.update();
     collisionBulletBrick();
+    checkDropDown();
     requestAnimationFrame(draw);
 }
 
