@@ -11,7 +11,7 @@ var rows = 14;
 var brickSide = 30;
 var wallOffset = 50;
 var wall = [];
-
+setupWall();
 var weapon = new Weapon();
 var magazine = []; // magazine = băng đạn
 var index = 0;
@@ -38,15 +38,10 @@ document.addEventListener("keyup", function (event) {
 function collisionBulletBrick() {
     for (var i = 0; i < cols; i++) {
         for (var j = 0; j < rows; j++) {
-            if (!wall[i][j].isBroken && wall[i][j].x + brickSide > magazine[index].x - magazine[index].r
-                && wall[i][j].y < magazine[index].y && wall[i][j].y + brickSide > magazine[index].y) {
-                if (wall[i][j].color == magazine[index].color) {
-                    // magazine[index].readyShot();
-                    wall[i][j].isBroken = true;
-                } else {
-                    // magazine[index].readyShot();
-                }
-
+            if ((wall[i][j].isTouchedByBullet) && (wall[i][j].color == magazine[index].color)) {
+                wall[i][j].setBroken(true);
+            } else {
+                //dontGetReadyShoot();
             }
         }
     }
@@ -56,7 +51,7 @@ function clearCanvas() {
     context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-setupWall();
+
 
 function draw() {
     clearCanvas();

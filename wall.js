@@ -5,7 +5,7 @@ function setupWall() {
             var x = i * brickSide;
             var y = j * brickSide + wallOffset;
             var color = randomColor();
-            var isBroken = false;
+            // var isBroken = false;
             wall[i][j] = new Brick(x, y, i, j, color);
         }
     }

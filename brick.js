@@ -5,6 +5,15 @@ class Brick {
         this.col = col;
         this.row = row;
         this.color = color;
+        this.isBroken = false;
+    }
+
+    get isTouchedByBullet() {
+        return !this.isBroken && this.x + brickSide > magazine[index].x - magazine[index].r && this.y < magazine[index].y && this.y + brickSide > magazine[index].y;
+    }
+
+    setBroken(status) {
+        this.isBroken = status;
     }
 
     get colName() {
