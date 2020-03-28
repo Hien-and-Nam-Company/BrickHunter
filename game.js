@@ -14,7 +14,9 @@ var wall = [];
 
 var weapon = new Weapon();
 //create a array of bullet
-var bullet = new Bullet();
+var magazine = []; // magazine = băng đạn
+var index = 0;
+magazine[index] = new Bullet();
 
 document.addEventListener("keydown", function (event) {
     if (event.keyCode == 38) {
@@ -27,22 +29,23 @@ document.addEventListener("keydown", function (event) {
 
 document.addEventListener("keyup", function (event) {
     if (event.keyCode == 37) { // arrow left: 37;   space keyCode: 32
-        bullet.getReadyShoot(weapon);
+        magazine[index].getReadyShoot(weapon);
         weapon.color = randomColor();
-        //create new bullet by somehow
+        magazine.push(new Bullet);
+        index++;
     }
 })
 
 function collisionBulletBrick() {
     for (var i = 0; i < cols; i++) {
         for (var j = 0; j < rows; j++) {
-            if (!wall[i][j].isBroken && wall[i][j].x + brickSide > bullet.x - bullet.r
-                && wall[i][j].y < bullet.y && wall[i][j].y + brickSide > bullet.y) {
-                if (wall[i][j].color == bullet.color) {
-                    // bullet.readyShot();
+            if (!wall[i][j].isBroken && wall[i][j].x + brickSide > magazine[index].x - magazine[index].r
+                && wall[i][j].y < magazine[index].y && wall[i][j].y + brickSide > magazine[index].y) {
+                if (wall[i][j].color == magazine[index].color) {
+                    // magazine[index].readyShot();
                     wall[i][j].isBroken = true;
                 } else {
-                    // bullet.readyShot();
+                    // magazine[index].readyShot();
                 }
 
             }
@@ -50,33 +53,6 @@ function collisionBulletBrick() {
     }
 }
 
-function setupWall() {
-    for (var i = 0; i < cols; i++) {
-        wall[i] = [];
-        for (var j = 0; j < rows; j++) {
-            var x = i * brickSide;
-            var y = j * brickSide + wallOffset;
-            var color = randomColor();
-            var isBroken = false;
-            wall[i][j] = new Brick(x, y, i, j, color);
-        }
-    }
-}
-
-function drawWall() {
-    for (var i = 0; i < cols; i++) {
-        for (var j = 0; j < rows; j++) {
-            if (!wall[i][j].isBroken) {
-                context.beginPath();
-                context.rect(wall[i][j].x, wall[i][j].y, brickSide, brickSide);
-                context.stroke();
-                context.fillStyle = wall[i][j].color;
-                context.fill();
-                context.closePath();
-            }
-        }
-    }
-}
 
 function clearCanvas() {
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -88,7 +64,7 @@ function draw() {
     clearCanvas();
     drawWall();
     weapon.draw();
-    bullet.draw();
+    magazine[index].draw();
     collisionBulletBrick();
     requestAnimationFrame(draw);
 }

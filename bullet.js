@@ -6,8 +6,7 @@ class Bullet {
         this.dx = 0;
         this.r = 10;
         this.speed = 10;
-        this.canShot = false;
-        this.alreadyShot = false;
+        this.canShot = true;
     }
 
     getReadyShoot() {
@@ -38,10 +37,9 @@ class Bullet {
         }
     }
 
-    createNewBullet(){
-        if (alreadyShot){
-            bullet = new Bullet();
-        }
-    }
+    // createNewBullet(){
+    //     if (canShot){
+    //         bulletList.push(new Bullet());
+    // }
 
 }
