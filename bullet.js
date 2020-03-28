@@ -14,7 +14,6 @@ class Bullet {
         this.color = weapon.color;
         this.x = weapon.x + 10;
         this.y = weapon.y + weapon.height / 2;
-        alreadyShot = true;
     }
 
     dontgetReadyShoot() {
@@ -23,9 +22,9 @@ class Bullet {
 
     initialDraw() {
         context.beginPath();
-        context.arc(bullet.x, bullet.y, bullet.r, 0, Math.PI * 2);
+        context.arc(this.x, this.y, this.r, 0, Math.PI * 2);
         context.stroke();
-        context.fillStyle = bullet.color;
+        context.fillStyle = this.color;
         context.fill();
         context.closePath();
     }
@@ -36,10 +35,5 @@ class Bullet {
             this.initialDraw();
         }
     }
-
-    // createNewBullet(){
-    //     if (canShot){
-    //         bulletList.push(new Bullet());
-    // }
 
 }
