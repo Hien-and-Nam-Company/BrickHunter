@@ -2,22 +2,22 @@ class Bullet {
     constructor() {
         this.x;
         this.y;
-        this.color;
         this.dx = 0;
         this.r = 10;
+        this.color;
         this.speed = 10;
-        this.canShot = true;
+        this.canShoot = false;
     }
 
     getReadyShoot() {
-        this.canShot = true;
+        this.canShoot = true;
         this.color = weapon.color;
         this.x = weapon.x + 10;
         this.y = weapon.y + weapon.height / 2;
     }
 
-    dontgetReadyShoot() {
-        this.canShot = false;
+    dontGetReadyShoot() {
+        this.canShoot = false;
     }
 
     initialDraw() {
@@ -30,7 +30,7 @@ class Bullet {
     }
 
     draw() {
-        if (this.canShot) {
+        if (this.canShoot) {
             this.x -= this.speed;
             this.initialDraw();
         }
