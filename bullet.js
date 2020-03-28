@@ -9,11 +9,11 @@ class Bullet {
         // this.canShot = false;
     }
 
-    getReadyShoot() {
+    getReadyShoot(wp) {
         // this.canShot = true;
-        this.color = weapon.color;
-        this.x = weapon.x + 10;
-        this.y = weapon.y + weapon.height / 2;
+        this.color = wp.color;
+        this.x = wp.x + 10;
+        this.y = wp.y + wp.height / 2;
         this.draw();
     }
 
