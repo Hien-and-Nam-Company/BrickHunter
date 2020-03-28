@@ -13,6 +13,7 @@ var wallOffset = 50;
 var wall = [];
 
 var weapon = new Weapon();
+//create a array of bullet
 var bullet = new Bullet();
 
 document.addEventListener("keydown", function (event) {
@@ -27,8 +28,8 @@ document.addEventListener("keydown", function (event) {
 document.addEventListener("keyup", function (event) {
     if (event.keyCode == 37) { // arrow left: 37;   space keyCode: 32
         bullet.getReadyShoot(weapon);
-        bullet.shoot();
         weapon.color = randomColor();
+        //create new bullet by somehow
     }
 })
 
@@ -87,6 +88,7 @@ function draw() {
     clearCanvas();
     drawWall();
     weapon.draw();
+    bullet.draw();
     collisionBulletBrick();
     requestAnimationFrame(draw);
 }

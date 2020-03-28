@@ -6,34 +6,41 @@ class Bullet {
         this.dx = 0;
         this.r = 10;
         this.speed = 10;
-        // this.canShot = false;
+        this.canShot = false;
+        this.alreadyShot = false;
     }
 
-    getReadyShoot(wp) {
-        // this.canShot = true;
-        this.color = wp.color;
-        this.x = wp.x + 10;
-        this.y = wp.y + wp.height / 2;
-        this.draw();
+    getReadyShoot() {
+        this.canShot = true;
+        this.color = weapon.color;
+        this.x = weapon.x + 10;
+        this.y = weapon.y + weapon.height / 2;
+        alreadyShot = true;
     }
 
-    // dontgetReadyShoot() {
-    //     this.canShot = false;
-    // }
+    dontgetReadyShoot() {
+        this.canShot = false;
+    }
 
-    draw() {
+    initialDraw() {
         context.beginPath();
-        context.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+        context.arc(bullet.x, bullet.y, bullet.r, 0, Math.PI * 2);
         context.stroke();
-        context.fillStyle = this.color;
+        context.fillStyle = bullet.color;
         context.fill();
         context.closePath();
     }
 
-    shoot() {
+    draw() {
         if (this.canShot) {
             this.x -= this.speed;
-            this.draw();
+            this.initialDraw();
+        }
+    }
+
+    createNewBullet(){
+        if (alreadyShot){
+            bullet = new Bullet();
         }
     }
 
