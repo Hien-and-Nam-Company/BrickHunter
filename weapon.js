@@ -4,7 +4,7 @@ class Weapon {
         this.height = 90;
         this.x = canvas.width - 60;
         this.y = canvas.height - 90;
-        this.color = randomColor();
+        this.color = randomWeaponColor();
     }
 
     draw() {
