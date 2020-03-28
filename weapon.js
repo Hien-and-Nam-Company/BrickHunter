@@ -36,5 +36,4 @@ class Weapon {
             this.y += 30;
         }
     }
-
 }
