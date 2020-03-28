@@ -1,15 +1,3 @@
-var canvas = document.getElementById('game');
-var context = canvas.getContext('2d');
-
-var gameColor = ['red', 'yellow', 'blue', 'green', 'violet', 'orange'];
-function randomColor() {
-    return gameColor[Math.floor(Math.random() * gameColor.length)];
-}
-
-var cols = 7;
-var rows = 14;
-var brickSide = 30;
-var wallOffset = 50;
 var wall = [];
 setupWall();
 var weapon = new Weapon();
@@ -46,12 +34,6 @@ function collisionBulletBrick() {
         }
     }
 }
-
-function clearCanvas() {
-    context.clearRect(0, 0, canvas.width, canvas.height);
-}
-
-
 
 function draw() {
     clearCanvas();
