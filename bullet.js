@@ -33,8 +33,9 @@ class Bullet {
     }
 
     update() {
-        this.move();
-        this.draw();
+        if (this.canDestroy) {
+            this.move();
+            this.draw();
+        }
     }
-
 }
