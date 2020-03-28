@@ -6,7 +6,8 @@ class Bullet {
         this.r = 10;
         this.color;
         this.speed = 10;
-        this.canShoot = false;
+        // this.canShoot = true;
+        this.isMovingAway = false;
     }
 
     getReadyShoot() {
@@ -32,6 +33,7 @@ class Bullet {
     draw() {
         if (this.canShoot) {
             this.x -= this.speed;
+            this.isMovingAway = true;
             this.initialDraw();
         }
     }

@@ -5,21 +5,17 @@ var magazine = []; // magazine = băng đạn
 var index = 0;
 magazine[index] = new Bullet();
 
-document.addEventListener("keydown", function (event) {
-    if (event.keyCode == 38) {
-        weapon.moveUp();
-    }
-    if (event.keyCode == 40) {
-        weapon.moveDown();
-    }
-})
+
 
 document.addEventListener("keydown", function (event) {
     if (event.keyCode == 37) { // arrow left: 37;   space keyCode: 32
         magazine[index].getReadyShoot();
         weapon.color = randomColor();
-        // index++;
-        // magazine[index] = new Bullet();
+        if(magazine[index].isMovingAway) {
+            index++;
+            console.log(index);
+            magazine[index] = new Bullet();
+        }
     }
 })
 
@@ -39,6 +35,7 @@ function draw() {
     clearCanvas();
     drawWall();
     weapon.draw();
+    //magazine[++index] = new Bullet();
     magazine[index].draw();
     collisionBulletBrick();
     requestAnimationFrame(draw);

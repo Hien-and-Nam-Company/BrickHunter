@@ -15,6 +15,14 @@ var rows = 14;
 var brickSide = 30;
 var wallOffset = 50;
 
+document.addEventListener("keydown", function (event) {
+    if (event.keyCode == 38) {
+        weapon.moveUp();
+    }
+    if (event.keyCode == 40) {
+        weapon.moveDown();
+    }
+})
 
 function setupWall() {
     for (var i = 0; i < cols; i++) {
