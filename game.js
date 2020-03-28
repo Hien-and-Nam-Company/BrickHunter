@@ -28,9 +28,10 @@ document.addEventListener("keydown", function (event) {
 
 document.addEventListener("keyup", function (event) {
     if (event.keyCode == 37) { // arrow left: 37;   space keyCode: 32
-        magazine[index].getReadyShoot(weapon);
+        magazine[index].getReadyShoot();
         weapon.color = randomColor();
-        //create new magazine[index] by somehow
+        // index++;
+        // magazine[index] = new Bullet();
     }
 })
 
