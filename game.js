@@ -42,6 +42,7 @@ function draw() {
     bullet.update();
     collisionBulletBrick();
     checkDropDown();
+    checkDropLeft();
     requestAnimationFrame(draw);
 }
 
