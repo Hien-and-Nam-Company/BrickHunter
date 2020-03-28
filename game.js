@@ -16,7 +16,7 @@ document.addEventListener("keyup", function (event) {
     if (event.keyCode == 37) { // arrow left: 37;   space keyCode: 32
         bullet.getReady();
         bullet.setCanDestroy(true);
-        weapon.color = randomColor();
+        weapon.color = randomWeaponColor();
         // bullet = bullet2;
     }
 })
@@ -24,11 +24,11 @@ document.addEventListener("keyup", function (event) {
 function collisionBulletBrick() {
     for (var i = 0; i < cols; i++) {
         for (var j = 0; j < rows; j++) {
-            if ((wall[i][j].isTouchedBy(bullet)) && (wall[i][j].color == bullet.color)) {
-                wall[i][j].setBroken(true);
-                checkAround(i, j, bullet.color);
-                bullet.setCanDestroy(false);
-            } else if (wall[i][j].isTouchedBy(bullet)) {
+            if ((wall[i][j].isTouchedBy(bullet))) {
+                if((wall[i][j].color == bullet.color)){
+                    wall[i][j].setBroken(true);
+                    checkAround(i, j, bullet.color);
+                }
                 bullet.setCanDestroy(false);
             }
         }
