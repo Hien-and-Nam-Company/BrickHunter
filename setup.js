@@ -95,3 +95,24 @@ function checkAround(col, row, color) {
     checkLeft(col, row, color);
     checkRight(col, row, color);
 }
+
+function swapBrick(firstBrick, secondBrick) {
+    var color = firstBrick.color;
+    var isBroken = firstBrick.isBroken;
+
+    firstBrick.color = secondBrick.color;
+    firstBrick.isBroken = secondBrick.isBroken;
+
+    secondBrick.color = color;
+    secondBrick.isBroken = isBroken;
+}
+
+function checkDropDown() {
+    for (var i = 0; i < cols; i++) {
+        for (var j = rows - 1; j > 0; j--) {
+            if (wall[i][j].isBroken) {
+                swapBrick(wall[i][j], wall[i][j - 1]);
+            }
+        }
+    }
+}
