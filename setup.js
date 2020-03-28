@@ -5,7 +5,8 @@ function clearCanvas() {
     context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-var gameColor = ['red', 'yellow', 'blue', 'green', 'violet', 'orange'];
+//var gameColor = ['red', 'yellow', 'blue', 'green', 'violet', 'orange'];
+var gameColor = ['red', 'yellow', 'blue']; // gameColor for test
 function randomColor() {
     return gameColor[Math.floor(Math.random() * gameColor.length)];
 }
