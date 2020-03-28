@@ -18,11 +18,7 @@ class Bullet {
         this.y = weapon.y + weapon.height / 2;
         this.color = weapon.color;
     }
-
-    dontGetReady() {
-        this.canShot = false;
-    }
-
+    
     draw() {
         context.beginPath();
         context.arc(this.x, this.y, this.r, 0, Math.PI * 2);
