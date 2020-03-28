@@ -4,7 +4,7 @@ var weapon = new Weapon();
 
 // var magazine = []; // magazine = băng đạn
 // var index = 0;
-// bullet = new Bullet();
+// magazine[index] = new Bullet();
 
 bullet1 = new Bullet();
 bullet2 = new Bullet();
@@ -27,7 +27,7 @@ function collisionBulletBrick() {
             if ((wall[i][j].isTouchedBy(bullet)) && (wall[i][j].color == bullet.color)) {
                 wall[i][j].setBroken(true);
             } else {
-                //dontGetReadyShoot();
+                
             }
         }
     }
