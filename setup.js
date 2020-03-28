@@ -52,3 +52,46 @@ function drawWall() {
         }
     }
 }
+
+function checkUp(col, row, color) {
+    if (row > 0) {
+        if (!wall[col][row - 1].isBroken && wall[col][row - 1].color == color) {
+            wall[col][row - 1].setBroken(true);
+            checkAround(col, row - 1, color);
+        }
+    }
+}
+
+function checkDown(col, row, color) {
+    if (row < rows - 1) {
+        if (!wall[col][row + 1].isBroken && wall[col][row + 1].color == color) {
+            wall[col][row + 1].setBroken(true);
+            checkAround(col, row + 1, color);
+        }
+    }
+}
+
+function checkLeft(col, row, color) {
+    if (col > 0) {
+        if (!wall[col - 1][row].isBroken && wall[col - 1][row].color == color) {
+            wall[col - 1][row].setBroken(true);
+            checkAround(col - 1, row, color);
+        }
+    }
+}
+
+function checkRight(col, row, color) {
+    if (col < cols - 1) {
+        if (!wall[col + 1][row].isBroken && wall[col + 1][row].color == color) {
+            wall[col + 1][row].setBroken(true);
+            checkAround(col + 1, row, color);
+        }
+    }
+}
+
+function checkAround(col, row, color) {
+    checkUp(col, row, color);
+    checkDown(col, row, color);
+    checkLeft(col, row, color);
+    checkRight(col, row, color);
+}
