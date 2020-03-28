@@ -8,12 +8,12 @@ class Brick {
         this.isBroken = false;
     }
 
-    isTouchedBy(bul) {
-        return !this.isBroken && this.x + brickSide > bul.x - bul.r && this.y < bul.y && this.y + brickSide > bul.y;
+    isTouchedBy(object) {
+        return !this.isBroken && this.x + brickSide > object.x - object.r && this.y < object.y && this.y + brickSide > object.y;
     }
 
-    setBroken(status) {
-        this.isBroken = status;
+    setBroken(value) {
+        this.isBroken = value;
     }
 
     get colName() {

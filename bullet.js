@@ -6,22 +6,24 @@ class Bullet {
         this.r = 10;
         this.color;
         this.speed = 10;
-        // this.canShoot = true;
-        this.isMovingAway = false;
+        this.canDestroy = false;
     }
 
-    getReadyShoot() {
-        this.canShoot = true;
-        this.color = weapon.color;
+    setCanDestroy(value) {
+        this.canDestroy = value;
+    }
+
+    getReady() {
         this.x = weapon.x + 10;
         this.y = weapon.y + weapon.height / 2;
+        this.color = weapon.color;
     }
 
-    dontGetReadyShoot() {
-        this.canShoot = false;
+    dontGetReady() {
+        this.canShot = false;
     }
 
-    initialDraw() {
+    draw() {
         context.beginPath();
         context.arc(this.x, this.y, this.r, 0, Math.PI * 2);
         context.stroke();
@@ -30,17 +32,14 @@ class Bullet {
         context.closePath();
     }
 
-    moveAway() {
+    move() {
         this.x -= this.speed;
         this.isMovingAway = true;
     }
 
-    draw() {
-        if (this.canShoot) {
-            this.x -= this.speed;
-            this.isMovingAway = true;
-            this.initialDraw();
-        }
+    update() {
+        this.move();
+        this.draw();
     }
 
 }
