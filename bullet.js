@@ -18,7 +18,7 @@ class Bullet {
         this.y = weapon.y + weapon.height / 2;
         this.color = weapon.color;
     }
-    
+
     draw() {
         context.beginPath();
         context.arc(this.x, this.y, this.r, 0, Math.PI * 2);
@@ -30,7 +30,6 @@ class Bullet {
 
     move() {
         this.x -= this.speed;
-        this.isMovingAway = true;
     }
 
     update() {
