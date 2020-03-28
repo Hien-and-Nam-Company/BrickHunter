@@ -12,10 +12,11 @@ bullet3 = new Bullet();
 
 bullet = bullet1;
 
-document.addEventListener("keydown", function (event) {
+document.addEventListener("keyup", function (event) {
     if (event.keyCode == 37) { // arrow left: 37;   space keyCode: 32
         bullet.getReady();
         weapon.color = randomColor();
+        bullet.setCanDestroy(true);
         // bullet = bullet2;
     }
 })
@@ -25,8 +26,9 @@ function collisionBulletBrick() {
         for (var j = 0; j < rows; j++) {
             if ((wall[i][j].isTouchedBy(bullet)) && (wall[i][j].color == bullet.color)) {
                 wall[i][j].setBroken(true);
-            } else {
-                bullet.setCanDestroy(false)
+                bullet.setCanDestroy(false);
+            } else if(wall[i][j].isTouchedBy(bullet)){
+                bullet.setCanDestroy(false);
             }
         }
     }
