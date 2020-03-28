@@ -30,6 +30,11 @@ class Bullet {
         context.closePath();
     }
 
+    moveAway() {
+        this.x -= this.speed;
+        this.isMovingAway = true;
+    }
+
     draw() {
         if (this.canShoot) {
             this.x -= this.speed;

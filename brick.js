@@ -8,8 +8,8 @@ class Brick {
         this.isBroken = false;
     }
 
-    get isTouchedByBullet() {
-        return !this.isBroken && this.x + brickSide > magazine[index].x - magazine[index].r && this.y < magazine[index].y && this.y + brickSide > magazine[index].y;
+    isTouchedBy(bul) {
+        return !this.isBroken && this.x + brickSide > bul.x - bul.r && this.y < bul.y && this.y + brickSide > bul.y;
     }
 
     setBroken(status) {
