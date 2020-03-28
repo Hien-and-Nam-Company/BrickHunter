@@ -5,10 +5,13 @@ function clearCanvas() {
     context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-//var gameColor = ['red', 'yellow', 'blue', 'green', 'violet', 'orange'];
-var gameColor = ['red', 'yellow', 'blue']; // gameColor for test
+var gameColor = ['red', 'yellow', 'blue', 'green', 'purple', 'orange'];
+var weaponColor = ['red', 'yellow', 'blue', 'green', 'purple', 'orange'];
 function randomColor() {
     return gameColor[Math.floor(Math.random() * gameColor.length)];
+}
+function randomWeaponColor() {
+    return weaponColor[Math.floor(Math.random() * weaponColor.length)];
 }
 
 var cols = 7;
