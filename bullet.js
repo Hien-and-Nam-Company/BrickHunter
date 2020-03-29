@@ -2,22 +2,17 @@ class Bullet {
     constructor() {
         this.x;
         this.y;
+        this.side = brickSide;
         this.dx = 0;
         this.r = 10;
         this.color;
-        this.speed = 4;
+        this.speed = 10;
         this.canDestroy = false;
-        this.side = 30;
+
     }
 
     setCanDestroy(value) {
         this.canDestroy = value;
-    }
-
-    setStickWall(object){
-        this.setCanDestroy(false);
-        this.x = object.x + brickSide;
-        
     }
 
     getReady() {
@@ -38,10 +33,6 @@ class Bullet {
 
     move() {
         this.x -= this.speed;
-    }
-
-    stopMove(){
-        
     }
 
     update() {
