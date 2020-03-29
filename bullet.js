@@ -2,23 +2,33 @@ class Bullet {
     constructor() {
         this.x;
         this.y;
-        this.side = brickSide;
-        this.dx = 0;
-        this.r = 10;
         this.color;
-        this.speed = 5;
-        this.canDestroy = false;
-
+        this.side = brickSide;
+        this.speedX = 0;
+        this.speedY = 0;
+        this.isMovingLeft = false;
+        this.isDroppingDown = false;
     }
 
-    setCanDestroy(value) {
-        this.canDestroy = value;
+    movingLeft() {
+        this.getReady();
+        this.speedX = -5;
+
+        this.isMovingLeft = true;
     }
 
-    getReady() {
-        this.x = weapon.x + 10;
-        this.y = weapon.y + weapon.height / 2 - 15;
-        this.color = weapon.color;
+    stopMovingLeft() {
+        this.speedX = 0;
+    }
+
+    drop() {
+        this.speedY = -5;
+        this.isDropped = true;
+    }
+
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
     }
 
     draw() {
@@ -31,21 +41,10 @@ class Bullet {
         context.closePath();
     }
 
-    moveLeft() {
-        this.x -= this.speed;
+    getReady() {
+        this.x = weapon.x + 10;
+        this.y = weapon.y + weapon.height / 2 - 15;
+        this.color = weapon.color;
     }
 
-    dropDown(){
-        this.y += 5;
-        collisionBulletBrick();
-        
-    }
-    
-
-    update() {
-        if (this.canDestroy) {
-            this.moveLeft();
-            this.draw();
-        }
-    }
 }

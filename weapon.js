@@ -6,7 +6,7 @@ class Weapon {
         this.y = canvas.height - 90;
         this.color = randomWeaponColor();
     }
-
+    
     draw() {
         context.beginPath();
         context.rect(this.x + this.width / 2, this.y, this.width / 2, this.height);
