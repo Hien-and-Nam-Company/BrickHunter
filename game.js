@@ -3,6 +3,7 @@ var wall = [];
 setupWall();
 var weapon = new Weapon();
 var bullet = new Bullet();
+var physics = new Physics();
 
 document.addEventListener("keyup", function (event) {
     if (event.keyCode == 37) {
@@ -15,7 +16,7 @@ document.addEventListener("keyup", function (event) {
 function collisionBulletBrick() {
     for (var i = 0; i < cols; i++) {
         for (var j = 0; j < rows; j++) {
-            if ((wall[i][j].isTouchedBy(bullet))) {
+            if (physics.collision(wall[i][j], bullet)) {
                 if ((wall[i][j].color == bullet.color)) {
                     wall[i][j].setBroken(true);
                     checkAround(i, j, bullet.color);

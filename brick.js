@@ -29,8 +29,7 @@ class Brick {
     // }
 
     isTouchedBy(object) {
-        // return !this.isBroken && this.x + brickSide > object.x - object.r && this.y < object.y && this.y + brickSide > object.y;
-        return !this.isBroken && object.x <= this.x + brickSide && object.y == this.y;
+        return !this.isBroken && this.x + brickSide > object.x - object.r && this.y < object.y && this.y + brickSide > object.y;
     }
 
     setBroken(value) {
