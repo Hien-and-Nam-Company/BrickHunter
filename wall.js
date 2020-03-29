@@ -125,3 +125,8 @@ function colorEffect(brickColor, bulletColor) {
         brickColor.setColor('blue');
     }
 }
+
+function hasToAddNewCol(){
+
+}
+

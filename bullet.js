@@ -31,13 +31,18 @@ class Bullet {
         context.closePath();
     }
 
-    move() {
+    moveLeft() {
         this.x -= this.speed;
     }
 
+    dropDown(){
+        
+    }
+    
+
     update() {
         if (this.canDestroy) {
-            this.move();
+            this.moveLeft();
             this.draw();
         }
     }
