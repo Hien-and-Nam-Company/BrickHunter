@@ -6,7 +6,7 @@ class Bullet {
         this.dx = 0;
         this.r = 10;
         this.color;
-        this.speed = 10;
+        this.speed = 5;
         this.canDestroy = false;
 
     }

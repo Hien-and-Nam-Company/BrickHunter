@@ -5,7 +5,7 @@ var weapon = new Weapon();
 var bullet = new Bullet();
 
 document.addEventListener("keyup", function (event) {
-    if (event.keyCode == 37) { // arrow left: 37;   space keyCode: 32
+    if (event.keyCode == 37) {
         bullet.getReady();
         bullet.setCanDestroy(true);
         weapon.color = randomWeaponColor();

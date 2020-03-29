@@ -31,7 +31,7 @@ class Weapon {
     }
 
     get canMoveDown() {
-        return this.y + this.height <= canvas.height - brickSide + this.height / 3 - 30;
+        return this.y + this.height <= canvas.height - brickSide + this.height / 3 - brickSide;
     }
 
     moveUp() {
