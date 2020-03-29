@@ -36,6 +36,8 @@ class Bullet {
     }
 
     dropDown(){
+        this.y += 5;
+        collisionBulletBrick();
         
     }
     

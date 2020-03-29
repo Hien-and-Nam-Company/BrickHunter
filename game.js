@@ -13,11 +13,24 @@ document.addEventListener("keyup", function (event) {
     }
 })
 
+// function collisionBulletBrick() {
+//     wall.forEach(function (brick) {
+//         if (physics.collision(brick, bullet)) {
+//             if (brick.color == bullet.color) {
+//                 brick.setBroken(true);
+//                 // checkAround(i, j, bullet.color);
+//             } else {
+//                 bullet.setCanDestroy(false);
+//             }
+//         }
+//     });
+// }
+
 function collisionBulletBrick() {
     for (var i = 0; i < cols; i++) {
         for (var j = 0; j < rows; j++) {
             if (physics.collision(wall[i][j], bullet)) {
-                if ((wall[i][j].color == bullet.color)) {
+                if (wall[i][j].color == bullet.color) {
                     wall[i][j].setBroken(true);
                     checkAround(i, j, bullet.color);
                 } //else colorEffect(wall[i][j], bullet.color);
