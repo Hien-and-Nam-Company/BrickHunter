@@ -20,6 +20,9 @@ function drawWall() {
             if (!wall[i][j].isBroken) {
                 context.beginPath();
                 context.rect(wall[i][j].x, wall[i][j].y, brickSide, brickSide);
+                context.strokeStyle = 'black';
+                context.lineWidth = 5;
+                context.setLineDash([0]);
                 context.stroke();
                 context.fillStyle = wall[i][j].color;
                 context.fill();
@@ -100,5 +103,25 @@ function checkDropLeft() {
                 swapBrick(wall[i][j], wall[i + 1][j]);
             }
         }
+    }
+}
+
+function colorEffect(brickColor, bulletColor) {
+    if (brickColor.color == 'green' && bulletColor == 'yellow') {
+        brickColor.setColor('blue');
+    } else if (brickColor.color == 'green' && bulletColor == 'blue') {
+        brickColor.setColor('yellow');
+    }
+
+    else if (brickColor.color == 'orange' && bulletColor == 'red') {
+        brickColor.setColor('yellow');
+    } else if (brickColor.color == 'orange' && bulletColor == 'yellow') {
+        brickColor.setColor('red');
+    }
+
+    else if (brickColor.color == 'purple' && bulletColor == 'blue') {
+        brickColor.setColor('red');
+    } else if (brickColor.color == 'purple' && bulletColor == 'red') {
+        brickColor.setColor('blue');
     }
 }

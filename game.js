@@ -1,23 +1,14 @@
+var brickSide = 30;
 var wall = [];
 setupWall();
 var weapon = new Weapon();
-
-// var magazine = []; // magazine = băng đạn
-// var index = 0;
-// magazine[index] = new Bullet();
-
-bullet1 = new Bullet();
-bullet2 = new Bullet();
-bullet3 = new Bullet();
-
-bullet = bullet1;
+var bullet = new Bullet();
 
 document.addEventListener("keyup", function (event) {
     if (event.keyCode == 37) { // arrow left: 37;   space keyCode: 32
         bullet.getReady();
         bullet.setCanDestroy(true);
         weapon.color = randomWeaponColor();
-        // bullet = bullet2;
     }
 })
 
