@@ -27,11 +27,7 @@ class Brick {
     // get brickName() {
     //     return this.colName + this.rowName;
     // }
-
-    isTouchedBy(object) {
-        return !this.isBroken && this.x + brickSide > object.x - object.r && this.y < object.y && this.y + brickSide > object.y;
-    }
-
+    
     setBroken(value) {
         this.isBroken = value;
     }
@@ -39,4 +35,7 @@ class Brick {
     setColor(color) {
         this.color = color;
     }
+    // isTouchedBy(object) {
+    //     return !this.isBroken && this.x + brickSide > object.x - object.r && this.y < object.y && this.y + brickSide > object.y;
+    // }
 }
