@@ -15,6 +15,15 @@ class Weapon {
         context.fillStyle = this.color;
         context.fill();
         context.closePath();
+
+        context.beginPath();
+        context.moveTo(this.x, this.y + this.height / 2);
+        context.lineTo(0, this.y + this.height / 2);
+        context.lineWidth = 2;
+        context.setLineDash([2]);
+        context.strokeStyle = this.color;
+        context.stroke();
+        context.closePath();
     }
 
     get canMoveUp() {
