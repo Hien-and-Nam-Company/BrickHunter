@@ -16,6 +16,10 @@ class Brick {
         this.isBroken = value;
     }
 
+    setColor(color) {
+        this.color = color;
+    }
+
     get colName() {
         switch (this.col) {
             case 0: return 'A';
