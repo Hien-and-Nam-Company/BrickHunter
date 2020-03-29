@@ -25,10 +25,10 @@ function collisionBulletBrick() {
     for (var i = 0; i < cols; i++) {
         for (var j = 0; j < rows; j++) {
             if ((wall[i][j].isTouchedBy(bullet))) {
-                if((wall[i][j].color == bullet.color)){
+                if ((wall[i][j].color == bullet.color)) {
                     wall[i][j].setBroken(true);
                     checkAround(i, j, bullet.color);
-                }
+                } //else colorEffect(wall[i][j], bullet.color);
                 bullet.setCanDestroy(false);
             }
         }
@@ -37,8 +37,8 @@ function collisionBulletBrick() {
 
 function draw() {
     clearCanvas();
-    drawWall();
     weapon.draw();
+    drawWall();
     bullet.update();
     collisionBulletBrick();
     checkDropDown();
