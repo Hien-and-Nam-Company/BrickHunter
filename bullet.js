@@ -10,20 +10,24 @@ class Bullet {
         this.isDroppingDown = false;
     }
 
-    movingLeft() {
+    moveLeft() {
         this.getReady();
         this.speedX = -5;
 
         this.isMovingLeft = true;
     }
 
-    stopMovingLeft() {
+    stopMoveLeft() {
         this.speedX = 0;
     }
 
-    drop() {
+    dropDown() {
         this.speedY = -5;
         this.isDropped = true;
+    }
+
+    stopDropDown() {
+        this.speedY = 0;
     }
 
     update() {

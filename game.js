@@ -7,7 +7,7 @@ var bullet = new Bullet();
 
 document.addEventListener("keyup", function (event) {
     if (event.keyCode == 37) {
-        bullet.movingLeft();
+        bullet.moveLeft();
         weapon.color = randomWeaponColor();
     }
 })
@@ -20,7 +20,7 @@ function collisionBulletBrick() {
                     wall[i][j].setBroken(true);
                     checkAround(i, j, bullet.color);
                 } //else colorEffect(wall[i][j], bullet.color);
-                bullet.stopMovingLeft();
+                bullet.stopMoveLeft();
             }
         }
     }
@@ -36,7 +36,7 @@ function update(){
     bullet.update();
     collisionBulletBrick();
     checkDropDown();
-    checkDropLeft();
+    // checkDropLeft();
 }
 
 function loop() {
