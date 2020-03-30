@@ -126,7 +126,7 @@ function colorEffect(brickColor, bulletColor) {
     }
 }
 
-function hasToAddNewCol(){
+function hasToAddNewCol() {
 
 }
 
