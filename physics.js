@@ -7,7 +7,7 @@ class Physics {
     }
 
     static collision(obj1, obj2) {
-        return Physics.distance(obj1, obj2) <= brickSide;
+        return Physics.distance(obj1, obj2) < brickSide;
     }
 
 }
