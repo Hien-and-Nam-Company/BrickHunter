@@ -2,7 +2,7 @@ var cols = 7;
 var rows = 14;
 var wallOffset = 50;
 
-function setupWall() {
+function wallSetup() {
     for (var i = 0; i < cols; i++) {
         wall[i] = [];
         for (var j = 0; j < rows; j++) {
@@ -14,14 +14,14 @@ function setupWall() {
     }
 }
 
-function drawWall() {
+function wallDraw() {
     for (var i = 0; i < cols; i++) {
         for (var j = 0; j < rows; j++) {
             if (!wall[i][j].isBroken) {
                 context.beginPath();
                 context.rect(wall[i][j].x, wall[i][j].y, brickSide, brickSide);
                 context.strokeStyle = 'black';
-                context.lineWidth = 5;
+                // context.lineWidth = 5;
                 context.setLineDash([0]);
                 context.stroke();
                 context.fillStyle = wall[i][j].color;
@@ -31,6 +31,16 @@ function drawWall() {
         }
     }
 }
+
+function wallUpdate(){
+    collisionBulletBrick();
+    checkDropDown();
+}
+
+function updateColumn(){
+
+}
+
 
 function checkUp(col, row, color) {
     if (row > 0) {

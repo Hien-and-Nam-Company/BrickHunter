@@ -1,9 +1,8 @@
 var brickSide = 30;
 var wall = [];
-setupWall();
+wallSetup();
 var weapon = new Weapon();
 var bullet = new Bullet();
-// var physics = new Physics();
 
 document.addEventListener("keyup", function (event) {
     if (event.keyCode == 37) {
@@ -22,7 +21,7 @@ function collisionBulletBrick() {
                 } else if (i < cols - 1 && wall[i][j].y == bullet.y) {
                     wall[i + 1][j].setBroken(false);
                     wall[i + 1][j].setColor(bullet.color);
-                    drawWall();
+                    wallDraw();
                 }
                 bullet.disappear();
                 //else colorEffect(wall[i][j], bullet.color);
@@ -34,15 +33,13 @@ function collisionBulletBrick() {
 
 function draw() {
     weapon.draw();
-    drawWall();
+    wallDraw();
     bullet.draw();
 }
 
 function update() {
+    wallUpdate();
     bullet.update();
-    collisionBulletBrick();
-    checkDropDown();
-    // checkDropLeft();
 }
 
 function loop() {

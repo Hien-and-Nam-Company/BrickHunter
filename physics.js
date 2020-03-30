@@ -1,4 +1,5 @@
 class Physics {
+    
     static distance(obj1, obj2) {
         return Math.sqrt(
             Math.pow(obj1.x - obj2.x, 2) +
