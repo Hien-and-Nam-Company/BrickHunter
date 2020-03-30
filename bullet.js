@@ -13,7 +13,6 @@ class Bullet {
     moveLeft() {
         this.getReady();
         this.speedX = -5;
-
         this.isMovingLeft = true;
     }
 
@@ -22,8 +21,8 @@ class Bullet {
     }
 
     dropDown() {
-        this.speedY = -5;
-        this.isDropped = true;
+        this.speedY = 5;
+        this.isDroppingDown = true;
     }
 
     stopDropDown() {
