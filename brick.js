@@ -7,7 +7,7 @@ class Brick {
         this.color = color;
         this.isBroken = false;
     }
-    
+
     setBroken(value) {
         this.isBroken = value;
     }
