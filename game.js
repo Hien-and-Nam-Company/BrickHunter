@@ -7,7 +7,7 @@ var bullet = new Bullet();
 
 document.addEventListener("keyup", function (event) {
     if (event.keyCode == 37) {
-        bullet.moveLeft();
+        bullet.shoot();
         weapon.color = randomWeaponColor();
     }
 })
@@ -20,7 +20,7 @@ function collisionBulletBrick() {
                     wall[i][j].setBroken(true);
                     checkAround(i, j, bullet.color);
                 } //else colorEffect(wall[i][j], bullet.color);
-                bullet.stopMoveLeft();
+                bullet.stopMovingLeft();
             }
         }
     }

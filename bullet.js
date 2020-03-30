@@ -3,29 +3,29 @@ class Bullet {
         this.x;
         this.y;
         this.color;
-        this.side = brickSide;
+        this.side = brickSide - 3;
         this.speedX = 0;
         this.speedY = 0;
         this.isMovingLeft = false;
         this.isDroppingDown = false;
     }
 
-    moveLeft() {
+    shoot() {
         this.getReady();
         this.speedX = -5;
         this.isMovingLeft = true;
     }
 
-    stopMoveLeft() {
+    stopMovingLeft() {
         this.speedX = 0;
     }
 
-    dropDown() {
+    drop() {
         this.speedY = 5;
         this.isDroppingDown = true;
     }
 
-    stopDropDown() {
+    stopDropping() {
         this.speedY = 0;
     }
 
