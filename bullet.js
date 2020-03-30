@@ -29,6 +29,10 @@ class Bullet {
         this.speedY = 0;
     }
 
+    disappear() {
+        this.y = canvas.height + brickSide;
+    }
+
     update() {
         this.x += this.speedX;
         this.y += this.speedY;
