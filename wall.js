@@ -11,46 +11,6 @@ function wallSetup() {
     }
 }
 
-function handleBulletAndWall() {
-    for (let col = 0; col < totalOfColumns; col++) {
-        for (let row = 0; row < totalOfRows; row++) {
-            if (Physics.collision(wall[col][row], bullet) && !wall[col][row].isBroken) {
-                if (wall[col][row].color == bullet.color) {
-                    handleDestroy(col, row);
-                } else if (wall[col][row].y == bullet.y) {
-                    // handleCombine(col, row);
-                }
-                bullet.disappear();
-                bullet.getReadyForNextShot();
-                wallDraw();
-            }
-        }
-    }
-}
-
-function handleDestroy(col, row) {
-    wall[col][row].setBroken(true);
-    checkAround(col, row, bullet.color);
-}
-
-function handleCombine(col, row) {
-    if (col < totalOfColumns - 1) {
-        
-        wall[col + 1][row].setBroken(false);
-        wall[col + 1][row].setColor(bullet.color);
-    } else if (col == totalOfColumns - 1) {
-        totalOfColumns++;
-        // wall[totalOfColumns - 1][totalOfRows - 1] = new ;
-        wall[totalOfColumns - 1][totalOfRows - 1].setColor(bullet.color);
-    }
-    wallDraw();
-}
-
-function wallUpdate() {
-    checkPullDown();
-    checkPullLeft();
-}
-
 function wallDraw() {
     for (let col = 0; col < totalOfColumns; col++) {
         for (let row = 0; row < totalOfRows; row++) {
@@ -67,6 +27,44 @@ function wallDraw() {
             }
         }
     }
+}
+
+function handleBulletAndWall() {
+    for (let col = 0; col < totalOfColumns; col++) {
+        for (let row = 0; row < totalOfRows; row++) {
+            if (Physics.collision(wall[col][row], bullet) && !wall[col][row].isBroken) {
+                if (wall[col][row].color == bullet.color) {
+                    handleDestroy(col, row);
+                } else if (wall[col][row].y == bullet.y) {
+                    handleCombine(col, row);
+                }
+                bullet.disappear();
+                bullet.getReadyForNextShot();
+                wallDraw();
+            }
+        }
+    }
+}
+
+function handleDestroy(col, row) {
+    wall[col][row].setBroken(true);
+    checkAround(col, row, bullet.color);
+}
+
+function handleCombine(col, row) {
+    if (col < totalOfColumns - 1) {
+        wall[col + 1][row] = new Brick(col + 1, row, bullet.color);
+    }
+    // } else if (col == totalOfColumns - 1) {
+    //     totalOfColumns++;
+    //     wall[totalOfColumns - 1][totalOfRows - 1] = new Brick(totalOfColumns - 1, totalOfRows - 1, bullet.color);
+    // }
+    wallDraw();
+}
+
+function wallUpdate() {
+    checkPullDown();
+    checkPullLeft();
 }
 
 function checkAround(col, row, color) {
