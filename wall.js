@@ -65,7 +65,7 @@ function handleDestroy(row, col) {
 }
 
 function handleAppend(row, col) {
-    if (col < totalOfColumns - 1) {
+    if (col < 9) {
         wall[row][col + 1] = new Brick(row, col + 1, bullet.color);
     }
     wallDraw();
