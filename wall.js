@@ -33,7 +33,7 @@ function wallDraw() {
 }
 
 function wallUpdate() {
-    collisionBulletBrick();
+    handleBulletAndWall();
     checkDropDown();
 }
 

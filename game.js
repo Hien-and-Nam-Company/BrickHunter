@@ -1,6 +1,5 @@
 var brickSide = 30;
 var wall = [];
-wallSetup();
 var weapon = new Weapon();
 var bullet = new Bullet();
 
@@ -11,35 +10,45 @@ document.addEventListener("keyup", function (event) {
     }
 })
 
-function collisionBulletBrick() {
+function handleBulletAndWall() {
     for (var i = 0; i < cols; i++) {
         for (var j = 0; j < rows; j++) {
             if (Physics.collision(wall[i][j], bullet) && !wall[i][j].isBroken) {
-                if (wall[i][j].color == bullet.color) {
-                    wall[i][j].setBroken(true);
-                    checkAround(i, j, bullet.color);
-                } else if (i < cols - 1 && wall[i][j].y == bullet.y) {
-                    wall[i + 1][j].setBroken(false);
-                    wall[i + 1][j].setColor(bullet.color);
-                    wallDraw();
-                }
+                handleDestroy(i,j);
+                handleCombine(i,j);
                 bullet.disappear();
-                //else colorEffect(wall[i][j], bullet.color);
-                //bullet.stopMovingLeft();
+                wallDraw();
             }
         }
     }
 }
 
+function handleDestroy(i, j){
+    if (wall[i][j].color == bullet.color) {
+        wall[i][j].setBroken(true);
+        checkAround(i, j, bullet.color);
+    }
+}
+
+function handleCombine(i, j){
+    if (i < cols - 1 && wall[i][j].y == bullet.y) {
+        wall[i + 1][j].setBroken(false);
+        wall[i + 1][j].setColor(bullet.color);
+    } else if(i == rows) {
+        rows++;
+        wall[i][j].setColor(bullet.color);
+    }    
+}
+
 function draw() {
     weapon.draw();
-    wallDraw();
     bullet.draw();
+    wallDraw();
 }
 
 function update() {
-    wallUpdate();
     bullet.update();
+    wallUpdate();
 }
 
 function loop() {
@@ -49,4 +58,5 @@ function loop() {
     requestAnimationFrame(loop);
 }
 
+wallSetup();
 loop();
