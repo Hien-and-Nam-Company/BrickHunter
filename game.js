@@ -51,6 +51,7 @@ function draw() {
 function update() {
     bullet.update();
     wallUpdate();
+    handleBulletAndWall();
 }
 
 function loop() {
