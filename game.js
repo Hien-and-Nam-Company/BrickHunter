@@ -6,7 +6,7 @@ var bullet = new Bullet();
 document.addEventListener("keyup", function (event) {
     if (event.keyCode == 37) {
         bullet.getReady();
-        bullet.shoot();
+        bullet.fire();
         weapon.color = randomWeaponColor();
     }
 })

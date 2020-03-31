@@ -34,7 +34,8 @@ function wallDraw() {
 
 function wallUpdate() {
     handleBulletAndWall();
-    checkDropDown();
+    checkPullDown();
+    checkPullLeft();
 }
 
 function columnUpdate() {
@@ -100,7 +101,7 @@ function swapBrick(firstBrick, secondBrick) {
     secondBrick.isBroken = isBroken;
 }
 
-function checkDropDown() {
+function checkPullDown() {
     for (var i = 0; i < cols; i++) {
         for (var j = rows - 1; j > 0; j--) {
             if (wall[i][j].isBroken) {
@@ -110,15 +111,15 @@ function checkDropDown() {
     }
 }
 
-// function checkDropLeft() {
-//     for (var i = 0; i < cols - 1; i++) {
-//         for (var j = rows - 1; j > 0; j--) {
-//             if (wall[i][j].isBroken) {
-//                 swapBrick(wall[i][j], wall[i + 1][j]);
-//             }
-//         }
-//     }
-// }
+function checkPullLeft() {
+    for (var i = 0; i < cols - 1; i++) {
+        for (var j = rows - 1; j > 0; j--) {
+            if (wall[i][j].isBroken) {
+                swapBrick(wall[i][j], wall[i + 1][j]);
+            }
+        }
+    }
+}
 
 function colorEffect(brickColor, bulletColor) {
     if (brickColor.color == 'green' && bulletColor == 'yellow') {

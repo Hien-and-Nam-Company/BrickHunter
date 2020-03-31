@@ -16,7 +16,7 @@ class Bullet {
         this.canFire = true;
     }
 
-    shoot() {
+    fire() {
         if (this.canFire){
             this.speedX = -5;
             this.isMovingLeft = true;
