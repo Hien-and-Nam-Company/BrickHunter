@@ -36,7 +36,7 @@ function handleBulletAndWall() {
                 if (wall[col][row].color == bullet.color) {
                     handleDestroy(col, row);
                 } else if (wall[col][row].y == bullet.y) {
-                    handleCombine(col, row);
+                    handleAppend(col, row);
                 }
                 bullet.disappear();
                 bullet.getReadyForNextShot();
@@ -51,7 +51,7 @@ function handleDestroy(col, row) {
     checkAround(col, row, bullet.color);
 }
 
-function handleCombine(col, row) {
+function handleAppend(col, row) {
     if (col < totalOfColumns - 1) {
         wall[col + 1][row] = new Brick(col + 1, row, bullet.color);
     }
