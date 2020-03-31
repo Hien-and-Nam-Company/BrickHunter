@@ -3,18 +3,17 @@ var totalOfRows = 14;
 var wallOffset = 50;
 
 function wallSetup() {
-    for (var col = 0; col < totalOfColumns; col++) {
+    for (let col = 0; col < totalOfColumns; col++) {
         wall[col] = [];
-        for (var row = 0; row < totalOfRows; row++) {
-            var color = randomColor();
-            wall[col][row] = new Brick(col, row, color);
+        for (let row = 0; row < totalOfRows; row++) {
+            wall[col][row] = new Brick(col, row, randomColor());
         }
     }
 }
 
 function handleBulletAndWall() {
-    for (var col = 0; col < totalOfColumns; col++) {
-        for (var row = 0; row < totalOfRows; row++) {
+    for (let col = 0; col < totalOfColumns; col++) {
+        for (let row = 0; row < totalOfRows; row++) {
             if (Physics.collision(wall[col][row], bullet) && !wall[col][row].isBroken) {
                 if (wall[col][row].color == bullet.color) {
                     handleDestroy(col, row);
@@ -53,8 +52,8 @@ function wallUpdate() {
 }
 
 function wallDraw() {
-    for (var col = 0; col < totalOfColumns; col++) {
-        for (var row = 0; row < totalOfRows; row++) {
+    for (let col = 0; col < totalOfColumns; col++) {
+        for (let row = 0; row < totalOfRows; row++) {
             if (!wall[col][row].isBroken) {
                 context.beginPath();
                 context.rect(wall[col][row].x, wall[col][row].y, brickSide, brickSide);
