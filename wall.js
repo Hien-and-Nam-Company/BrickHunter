@@ -1,21 +1,11 @@
-var cols = 7;
-var rows = 14;
+var totalOfColumns = 7;
+var totalOfRows = 14;
 var wallOffset = 50;
 
-function wallUpdate() {
-    checkPullDown();
-    checkPullLeft();
-}
-
-function columnAndRowUpdate() {
-    cols += subtractedCols;
-    rows += subtractedRows
-}
-
 function wallSetup() {
-    for (var col = 0; col < cols; col++) {
+    for (var col = 0; col < totalOfColumns; col++) {
         wall[col] = [];
-        for (var row = 0; row < rows; row++) {
+        for (var row = 0; row < totalOfRows; row++) {
             var color = randomColor();
             wall[col][row] = new Brick(col, row, color);
         }
@@ -23,8 +13,8 @@ function wallSetup() {
 }
 
 function handleBulletAndWall() {
-    for (var col = 0; col < cols; col++) {
-        for (var row = 0; row < rows; row++) {
+    for (var col = 0; col < totalOfColumns; col++) {
+        for (var row = 0; row < totalOfRows; row++) {
             if (Physics.collision(wall[col][row], bullet) && !wall[col][row].isBroken) {
                 if (wall[col][row].color == bullet.color) {
                     handleDestroy(col, row);
@@ -45,21 +35,26 @@ function handleDestroy(col, row) {
 }
 
 function handleCombine(col, row) {
-    if (col < cols - 1) {
+    if (col < totalOfColumns - 1) {
         
         wall[col + 1][row].setBroken(false);
         wall[col + 1][row].setColor(bullet.color);
-    } else if (col == cols - 1) {
-        cols++;
-        // wall[cols - 1][rows - 1] = new ;
-        wall[cols - 1][rows - 1].setColor(bullet.color);
+    } else if (col == totalOfColumns - 1) {
+        totalOfColumns++;
+        // wall[totalOfColumns - 1][totalOfRows - 1] = new ;
+        wall[totalOfColumns - 1][totalOfRows - 1].setColor(bullet.color);
     }
     wallDraw();
 }
 
+function wallUpdate() {
+    checkPullDown();
+    checkPullLeft();
+}
+
 function wallDraw() {
-    for (var col = 0; col < cols; col++) {
-        for (var row = 0; row < rows; row++) {
+    for (var col = 0; col < totalOfColumns; col++) {
+        for (var row = 0; row < totalOfRows; row++) {
             if (!wall[col][row].isBroken) {
                 context.beginPath();
                 context.rect(wall[col][row].x, wall[col][row].y, brickSide, brickSide);
@@ -92,7 +87,7 @@ function checkUp(col, row, color) {
 }
 
 function checkDown(col, row, color) {
-    if (row < rows - 1) {
+    if (row < totalOfRows - 1) {
         if (!wall[col][row + 1].isBroken && wall[col][row + 1].color == color) {
             wall[col][row + 1].setBroken(true);
             checkAround(col, row + 1, color);
@@ -110,7 +105,7 @@ function checkLeft(col, row, color) {
 }
 
 function checkRight(col, row, color) {
-    if (col < cols - 1) {
+    if (col < totalOfColumns - 1) {
         if (!wall[col + 1][row].isBroken && wall[col + 1][row].color == color) {
             wall[col + 1][row].setBroken(true);
             checkAround(col + 1, row, color);
@@ -119,8 +114,8 @@ function checkRight(col, row, color) {
 }
 
 function checkPullDown() {
-    for (var col = 0; col < cols; col++) {
-        for (var row = rows - 1; row > 0; row--) {
+    for (var col = 0; col < totalOfColumns; col++) {
+        for (var row = totalOfRows - 1; row > 0; row--) {
             if (wall[col][row].isBroken) {
                 swapBrick(wall[col][row], wall[col][row - 1]);
             }
@@ -129,8 +124,8 @@ function checkPullDown() {
 }
 
 function checkPullLeft() {
-    for (var col = 0; col < cols - 1; col++) {
-        for (var row = rows - 1; row > 0; row--) {
+    for (var col = 0; col < totalOfColumns - 1; col++) {
+        for (var row = totalOfRows - 1; row > 0; row--) {
             if (wall[col][row].isBroken) {
                 swapBrick(wall[col][row], wall[col + 1][row]);
             }
