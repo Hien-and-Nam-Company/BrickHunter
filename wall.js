@@ -1,4 +1,5 @@
 var totalOfColumns = 7;
+var maximumOfColumns = 10;
 var totalOfRows = 14;
 var wallOffset = 50;
 
@@ -9,24 +10,15 @@ function wallSetup() {
             if (col < totalOfColumns) {
                 wall[row][col] = new Brick(row, col, randomColor(), false);
             } else {
-                wall[row][col] = new Brick(row, col, randomColor(), true);
+                wall[row][col] = new Brick(row, col, 'black', true);
             }
         }
     }
 }
 
-// function hideSomething(){
-//     for (let row = 0; row < 10; row++) {
-//         wall[row] = [];
-//         for (let col = 0; col < totalOfColumns; col++) {
-//             wall[row][col] = new Brick(row, col, randomColor());
-//         }
-//     }
-// }
-
 function wallDraw() {
     for (let row = 0; row < totalOfRows; row++) {
-        for (let col = 0; col < 10; col++) {
+        for (let col = 0; col < maximumOfColumns; col++) {
             if (!wall[row][col].isBroken) {
                 context.beginPath();
                 context.rect(wall[row][col].x, wall[row][col].y, brickSide, brickSide);
