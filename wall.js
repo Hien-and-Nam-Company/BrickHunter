@@ -3,25 +3,38 @@ var totalOfRows = 14;
 var wallOffset = 50;
 
 function wallSetup() {
-    for (let col = 0; col < totalOfColumns; col++) {
-        wall[col] = [];
-        for (let row = 0; row < totalOfRows; row++) {
-            wall[col][row] = new Brick(col, row, randomColor());
+    for (let row = 0; row < totalOfRows; row++) {
+        wall[row] = [];
+        for (let col = 0; col < 10; col++) {
+            if (col < totalOfColumns) {
+                wall[row][col] = new Brick(row, col, randomColor(), false);
+            } else {
+                wall[row][col] = new Brick(row, col, randomColor(), true);
+            }
         }
     }
 }
 
+// function hideSomething(){
+//     for (let row = 0; row < 10; row++) {
+//         wall[row] = [];
+//         for (let col = 0; col < totalOfColumns; col++) {
+//             wall[row][col] = new Brick(row, col, randomColor());
+//         }
+//     }
+// }
+
 function wallDraw() {
-    for (let col = 0; col < totalOfColumns; col++) {
-        for (let row = 0; row < totalOfRows; row++) {
-            if (!wall[col][row].isBroken) {
+    for (let row = 0; row < totalOfRows; row++) {
+        for (let col = 0; col < 10; col++) {
+            if (!wall[row][col].isBroken) {
                 context.beginPath();
-                context.rect(wall[col][row].x, wall[col][row].y, brickSide, brickSide);
+                context.rect(wall[row][col].x, wall[row][col].y, brickSide, brickSide);
                 context.strokeStyle = 'black';
                 // context.lineWidth = 5;
                 context.setLineDash([0]);
                 context.stroke();
-                context.fillStyle = wall[col][row].color;
+                context.fillStyle = wall[row][col].color;
                 context.fill();
                 context.closePath();
             }
@@ -30,13 +43,13 @@ function wallDraw() {
 }
 
 function handleBulletAndWall() {
-    for (let col = 0; col < totalOfColumns; col++) {
-        for (let row = 0; row < totalOfRows; row++) {
-            if (Physics.collision(wall[col][row], bullet) && !wall[col][row].isBroken) {
-                if (wall[col][row].color == bullet.color) {
-                    handleDestroy(col, row);
-                } else if (wall[col][row].y == bullet.y) {
-                    handleAppend(col, row);
+    for (let row = 0; row < totalOfRows; row++) {
+        for (let col = 0; col < totalOfColumns; col++) {
+            if (Physics.collision(wall[row][col], bullet) && !wall[row][col].isBroken) {
+                if (wall[row][col].color == bullet.color) {
+                    handleDestroy(row, col);
+                } else if (wall[row][col].y == bullet.y) {
+                    handleAppend(row, col);
                 }
                 bullet.disappear();
                 bullet.getReadyForNextShot();
@@ -46,85 +59,84 @@ function handleBulletAndWall() {
     }
 }
 
-function handleDestroy(col, row) {
-    wall[col][row].setBroken(true);
-    checkAround(col, row, bullet.color);
+function handleDestroy(row, col) {
+    wall[row][col].setBroken(true);
+    checkAround(row, col, bullet.color);
 }
 
-function handleAppend(col, row) {
+function handleAppend(row, col) {
     if (col < totalOfColumns - 1) {
-        wall[col + 1][row] = new Brick(col + 1, row, bullet.color);
+        wall[row][col + 1] = new Brick(row, col + 1, bullet.color);
     }
-    // } else if (col == totalOfColumns - 1) {
-    //     totalOfColumns++;
-    //     wall[totalOfColumns - 1][totalOfRows - 1] = new Brick(totalOfColumns - 1, totalOfRows - 1, bullet.color);
-    // }
     wallDraw();
 }
+
+
 
 function wallUpdate() {
     checkPullDown();
     checkPullLeft();
 }
 
-function checkAround(col, row, color) {
-    checkUp(col, row, color);
-    checkDown(col, row, color);
-    checkLeft(col, row, color);
-    checkRight(col, row, color);
+function checkAround(row, col, color) {
+    checkUp(row, col, color);
+    checkDown(row, col, color);
+    checkLeft(row, col, color);
+    checkRight(row, col, color);
 }
 
-function checkUp(col, row, color) {
+
+function checkUp(row, col, color) {
     if (row > 0) {
-        if (!wall[col][row - 1].isBroken && wall[col][row - 1].color == color) {
-            wall[col][row - 1].setBroken(true);
-            checkAround(col, row - 1, color);
+        if (!wall[row - 1][col].isBroken && wall[row - 1][col].color == color) {
+            wall[row - 1][col].setBroken(true);
+            checkAround(row - 1, col, color);
         }
     }
 }
 
-function checkDown(col, row, color) {
+function checkDown(row, col, color) {
     if (row < totalOfRows - 1) {
-        if (!wall[col][row + 1].isBroken && wall[col][row + 1].color == color) {
-            wall[col][row + 1].setBroken(true);
-            checkAround(col, row + 1, color);
+        if (!wall[row + 1][col].isBroken && wall[row + 1][col].color == color) {
+            wall[row + 1][col].setBroken(true);
+            checkAround(row + 1, col, color);
         }
     }
 }
 
-function checkLeft(col, row, color) {
+function checkLeft(row, col, color) {
     if (col > 0) {
-        if (!wall[col - 1][row].isBroken && wall[col - 1][row].color == color) {
-            wall[col - 1][row].setBroken(true);
-            checkAround(col - 1, row, color);
+        if (!wall[row][col - 1].isBroken && wall[row][col - 1].color == color) {
+            wall[row][col - 1].setBroken(true);
+            checkAround(row - 1, col, color);
         }
     }
 }
 
-function checkRight(col, row, color) {
-    if (col < totalOfColumns - 1) {
-        if (!wall[col + 1][row].isBroken && wall[col + 1][row].color == color) {
-            wall[col + 1][row].setBroken(true);
-            checkAround(col + 1, row, color);
+function checkRight(row, col, color) {
+    if (row < totalOfRows - 1) {
+        if (!wall[row][col + 1].isBroken && wall[row][col + 1].color == color) {
+            wall[row][col + 1].setBroken(true);
+            checkAround(row, col + 1, color);
         }
     }
 }
 
 function checkPullDown() {
-    for (let col = 0; col < totalOfColumns; col++) {
-        for (let row = totalOfRows - 1; row > 0; row--) {
-            if (wall[col][row].isBroken) {
-                swapBrick(wall[col][row], wall[col][row - 1]);
+    for (let row = totalOfRows - 1; row > 0; row--) {
+        for (let col = 0; col < totalOfColumns; col++) {
+            if (wall[row][col].isBroken) {
+                swapBrick(wall[row][col], wall[row - 1][col]);
             }
         }
     }
 }
 
 function checkPullLeft() {
-    for (let col = 0; col < totalOfColumns - 1; col++) {
-        for (let row = totalOfRows - 1; row > 0; row--) {
-            if (wall[col][row].isBroken) {
-                swapBrick(wall[col][row], wall[col + 1][row]);
+    for (let row = totalOfRows - 1; row > 0; row--) {
+        for (let col = 0; col < totalOfColumns - 1; col++) {
+            if (wall[row][col].isBroken) {
+                swapBrick(wall[row][col], wall[row + 1][col]);
             }
         }
     }
@@ -160,8 +172,3 @@ function colorEffect(brickColor, bulletColor) {
         brickColor.setColor('blue');
     }
 }
-
-function hasToAddNewCol() {
-
-}
-
