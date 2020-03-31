@@ -1,9 +1,9 @@
 class Brick {
-    constructor(x, y, col, row, color) {
-        this.x = x;
-        this.y = y;
+    constructor(col, row, color) {
         this.col = col;
         this.row = row;
+        this.x = this.col * brickSide;
+        this.y = this.row * brickSide + wallOffset;
         this.color = color;
         this.isBroken = false;
     }

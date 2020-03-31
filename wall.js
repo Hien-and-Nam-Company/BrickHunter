@@ -7,6 +7,74 @@ function wallUpdate() {
     checkPullLeft();
 }
 
+function columnAndRowUpdate() {
+    cols += subtractedCols;
+    rows += subtractedRows
+}
+
+function wallSetup() {
+    for (var col = 0; col < cols; col++) {
+        wall[col] = [];
+        for (var row = 0; row < rows; row++) {
+            var color = randomColor();
+            wall[col][row] = new Brick(col, row, color);
+        }
+    }
+}
+
+function handleBulletAndWall() {
+    for (var col = 0; col < cols; col++) {
+        for (var row = 0; row < rows; row++) {
+            if (Physics.collision(wall[col][row], bullet) && !wall[col][row].isBroken) {
+                if (wall[col][row].color == bullet.color) {
+                    handleDestroy(col, row);
+                } else if (wall[col][row].y == bullet.y) {
+                    handleCombine(col, row);
+                }
+                bullet.disappear();
+                bullet.getReadyForNextShot();
+                wallDraw();
+            }
+        }
+    }
+}
+
+function handleDestroy(col, row) {
+    wall[col][row].setBroken(true);
+    checkAround(col, row, bullet.color);
+}
+
+function handleCombine(col, row) {
+    if (col < cols - 1) {
+        
+        wall[col + 1][row].setBroken(false);
+        wall[col + 1][row].setColor(bullet.color);
+    } else if (col == cols - 1) {
+        cols++;
+        // wall[cols - 1][rows - 1] = new ;
+        wall[cols - 1][rows - 1].setColor(bullet.color);
+    }
+    wallDraw();
+}
+
+function wallDraw() {
+    for (var col = 0; col < cols; col++) {
+        for (var row = 0; row < rows; row++) {
+            if (!wall[col][row].isBroken) {
+                context.beginPath();
+                context.rect(wall[col][row].x, wall[col][row].y, brickSide, brickSide);
+                context.strokeStyle = 'black';
+                // context.lineWidth = 5;
+                context.setLineDash([0]);
+                context.stroke();
+                context.fillStyle = wall[col][row].color;
+                context.fill();
+                context.closePath();
+            }
+        }
+    }
+}
+
 function checkAround(col, row, color) {
     checkUp(col, row, color);
     checkDown(col, row, color);
@@ -51,20 +119,20 @@ function checkRight(col, row, color) {
 }
 
 function checkPullDown() {
-    for (var i = 0; i < cols; i++) {
-        for (var j = rows - 1; j > 0; j--) {
-            if (wall[i][j].isBroken) {
-                swapBrick(wall[i][j], wall[i][j - 1]);
+    for (var col = 0; col < cols; col++) {
+        for (var row = rows - 1; row > 0; row--) {
+            if (wall[col][row].isBroken) {
+                swapBrick(wall[col][row], wall[col][row - 1]);
             }
         }
     }
 }
 
 function checkPullLeft() {
-    for (var i = 0; i < cols - 1; i++) {
-        for (var j = rows - 1; j > 0; j--) {
-            if (wall[i][j].isBroken) {
-                swapBrick(wall[i][j], wall[i + 1][j]);
+    for (var col = 0; col < cols - 1; col++) {
+        for (var row = rows - 1; row > 0; row--) {
+            if (wall[col][row].isBroken) {
+                swapBrick(wall[col][row], wall[col + 1][row]);
             }
         }
     }
@@ -105,32 +173,3 @@ function hasToAddNewCol() {
 
 }
 
-function wallSetup() {
-    for (var i = 0; i < cols; i++) {
-        wall[i] = [];
-        for (var j = 0; j < rows; j++) {
-            var x = i * brickSide;
-            var y = j * brickSide + wallOffset;
-            var color = randomColor();
-            wall[i][j] = new Brick(x, y, i, j, color);
-        }
-    }
-}
-
-function wallDraw() {
-    for (var i = 0; i < cols; i++) {
-        for (var j = 0; j < rows; j++) {
-            if (!wall[i][j].isBroken) {
-                context.beginPath();
-                context.rect(wall[i][j].x, wall[i][j].y, brickSide, brickSide);
-                context.strokeStyle = 'black';
-                // context.lineWidth = 5;
-                context.setLineDash([0]);
-                context.stroke();
-                context.fillStyle = wall[i][j].color;
-                context.fill();
-                context.closePath();
-            }
-        }
-    }
-}
