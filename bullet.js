@@ -8,12 +8,19 @@ class Bullet {
         this.speedY = 0;
         this.isMovingLeft = false;
         this.isDroppingDown = false;
+        this.canFire = false;
+    }
+
+    getReadyForNextShot(value) {
+        // if (something)
+        this.canFire = true;
     }
 
     shoot() {
-        this.getReady();
-        this.speedX = -5;
-        this.isMovingLeft = true;
+        if (this.canFire){
+            this.speedX = -5;
+            this.isMovingLeft = true;
+        }
     }
 
     stopMovingLeft() {
@@ -52,6 +59,7 @@ class Bullet {
         this.x = weapon.x + 10;
         this.y = weapon.y + weapon.height / 2 - 15;
         this.color = weapon.color;
+        this.canFire = true;
     }
 
 }

@@ -5,6 +5,7 @@ var bullet = new Bullet();
 
 document.addEventListener("keyup", function (event) {
     if (event.keyCode == 37) {
+        bullet.getReady();
         bullet.shoot();
         weapon.color = randomWeaponColor();
     }
@@ -17,6 +18,7 @@ function handleBulletAndWall() {
                 handleDestroy(i,j);
                 handleCombine(i,j);
                 bullet.disappear();
+                bullet.getReadyForNextShot();
                 wallDraw();
             }
         }
@@ -42,8 +44,8 @@ function handleCombine(i, j){
 
 function draw() {
     weapon.draw();
-    bullet.draw();
     wallDraw();
+    bullet.draw();
 }
 
 function update() {
