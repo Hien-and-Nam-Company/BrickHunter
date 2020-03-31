@@ -18,7 +18,7 @@ function handleBulletAndWall() {
                 if (wall[col][row].color == bullet.color) {
                     handleDestroy(col, row);
                 } else if (wall[col][row].y == bullet.y) {
-                    handleCombine(col, row);
+                    // handleCombine(col, row);
                 }
                 bullet.disappear();
                 bullet.getReadyForNextShot();
@@ -113,8 +113,8 @@ function checkRight(col, row, color) {
 }
 
 function checkPullDown() {
-    for (var col = 0; col < totalOfColumns; col++) {
-        for (var row = totalOfRows - 1; row > 0; row--) {
+    for (let col = 0; col < totalOfColumns; col++) {
+        for (let row = totalOfRows - 1; row > 0; row--) {
             if (wall[col][row].isBroken) {
                 swapBrick(wall[col][row], wall[col][row - 1]);
             }
@@ -123,8 +123,8 @@ function checkPullDown() {
 }
 
 function checkPullLeft() {
-    for (var col = 0; col < totalOfColumns - 1; col++) {
-        for (var row = totalOfRows - 1; row > 0; row--) {
+    for (let col = 0; col < totalOfColumns - 1; col++) {
+        for (let row = totalOfRows - 1; row > 0; row--) {
             if (wall[col][row].isBroken) {
                 swapBrick(wall[col][row], wall[col + 1][row]);
             }
@@ -133,8 +133,8 @@ function checkPullLeft() {
 }
 
 function swapBrick(firstBrick, secondBrick) {
-    var color = firstBrick.color;
-    var isBroken = firstBrick.isBroken;
+    let color = firstBrick.color;
+    let isBroken = firstBrick.isBroken;
 
     firstBrick.color = secondBrick.color;
     firstBrick.isBroken = secondBrick.isBroken;
