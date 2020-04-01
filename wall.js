@@ -115,8 +115,8 @@ function checkRight(row, col, color) {
 
 function checkPullDown() {
     for (let row = totalOfRows - 1; row > 0; row--) {
-        for (let col = 0; col < maximumOfColumns; col++) {
-            if (wall[row][col].isVisual) {
+        for (let col = 0; col < maximumOfColumns -1 ; col++) {
+            if (wall[row][col].isVisual == false) {
                 swapBrick(wall[row][col], wall[row - 1][col]);
             }
         }
