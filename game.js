@@ -2,13 +2,16 @@ var brickSide = 30;
 var wall = [];
 var weapon = new Weapon();
 // var bullets = new Array();
-var bullet = new Bullet();
-// var ammunition = new Array();
+
+var ammunition = new Array();
+ammunition.push(new Bullet());
+var bullet = ammunition[0];
 
 document.addEventListener("keyup", function (event) {
     if (event.keyCode == 37) {
-        // ammunition.push(new Bullet();
         bullet.fire();
+        // ammunition.push(new Bullet();
+
     }
 })
 
