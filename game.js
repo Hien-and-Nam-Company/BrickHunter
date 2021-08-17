@@ -9,9 +9,12 @@ var bullet = ammunition[0];
 
 document.addEventListener("keyup", function (event) {
     if (event.keyCode == 37) {
-        bullet.fire();
-        // ammunition.push(new Bullet();
 
+        // ammunition.push(new Bullet();
+        // for (let index = ammunition.length - 1; index > -1; -- index) {
+        //     let bullet = ammunition[index];
+            bullet.fire();
+        // }
     }
 })
 
