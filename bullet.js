@@ -1,7 +1,7 @@
 class Bullet {
     constructor() {
-        this.x = weapon.x + 10;
-        this.y = weapon.y + weapon.height / 2 - 15;
+        this.x;
+        this.y;
         this.color;
         this.side = brickSide - 3;
         this.velocityX = 0;
@@ -61,6 +61,8 @@ class Bullet {
     }
 
     getReady() {
+        this.x = weapon.x + 10;
+        this.y = weapon.y + weapon.height / 2 - 15;
         this.color = weapon.color;
         this.canFire = true;
     }

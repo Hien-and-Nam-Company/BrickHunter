@@ -33,6 +33,11 @@ function update() {
     handleBulletAndWall();
 }
 
+function updateBullet() {
+    
+}
+
+
 function loop() {
     clearCanvas();
     update();
