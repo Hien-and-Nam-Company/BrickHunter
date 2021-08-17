@@ -12,9 +12,18 @@ document.addEventListener("keyup", function (event) {
     }
 })
 
+document.addEventListener("keydown", function (event) {
+    if (event.keyCode == 38) {
+        weapon.moveUp();
+    }
+    if (event.keyCode == 40) {
+        weapon.moveDown();
+    }
+})
+
 function draw() {
     weapon.draw();
-    wallDraw();
+    drawWall();
     bullet.draw();
 }
 

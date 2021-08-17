@@ -16,7 +16,7 @@ function prescribeWall() {
     }
 }
 
-function wallDraw() {
+function drawWall() {
     for (let row = 0; row < totalOfRows; row++) {
         for (let col = 0; col < 10; col++) {
             if (wall[row][col].isVisual) {
@@ -45,7 +45,7 @@ function handleBulletAndWall() {
                 }
                 bullet.disappear();
                 bullet.getReadyForNextShot();
-                wallDraw();
+                drawWall();
             }
         }
     }
@@ -61,7 +61,7 @@ function handleAppend(row, col) {
         wall[row][col + 1].setVisual(true);
         wall[row][col + 1].setColor(bullet.color);
     }
-    wallDraw();
+    drawWall();
 }
 
 function updateWall() {

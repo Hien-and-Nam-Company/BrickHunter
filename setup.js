@@ -13,12 +13,3 @@ function randomColor() {
 function randomWeaponColor() {
     return weaponColor[Math.floor(Math.random() * weaponColor.length)];
 }
-
-document.addEventListener("keydown", function (event) {
-    if (event.keyCode == 38) {
-        weapon.moveUp();
-    }
-    if (event.keyCode == 40) {
-        weapon.moveDown();
-    }
-})
