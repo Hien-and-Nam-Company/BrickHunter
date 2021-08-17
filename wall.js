@@ -3,7 +3,7 @@ var amountOfColumns = 7;
 var totalOfRows = 14;
 var wallOffset = 50;
 
-function wallSetup() {
+function prescribeWall() {
     for (let row = 0; row < totalOfRows; row++) {
         wall[row] = [];
         for (let col = 0; col < maximumOfColumns; col++) {

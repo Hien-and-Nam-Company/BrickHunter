@@ -31,5 +31,5 @@ function loop() {
     requestAnimationFrame(loop);
 }
 
-wallSetup();
+prescribeWall();
 loop();
