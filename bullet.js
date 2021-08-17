@@ -4,12 +4,14 @@ class Bullet {
         this.y;
         this.color;
         this.side = brickSide - 3;
-        this.speedX = 0;
-        this.speedY = 0;
+        this.velocityX = 0;
+        this.velocityY = 0;
         this.isMovingLeft = false;
         this.isDroppingDown = false;
         this.canFire = false;
     }
+
+  //  updatePosition(this.x += this.vx;)
 
     getReadyForNextShot(value) {
         // if (something)
@@ -18,22 +20,22 @@ class Bullet {
 
     fire() {
         if (this.canFire){
-            this.speedX = -5;
+            this.velocityX = -5;
             this.isMovingLeft = true;
         }
     }
 
     stopMovingLeft() {
-        this.speedX = 0;
+        this.velocityX = 0;
     }
 
     drop() {
-        this.speedY = 5;
+        this.velocityY = 5;
         this.isDroppingDown = true;
     }
 
     stopDropping() {
-        this.speedY = 0;
+        this.velocityY = 0;
     }
 
     disappear() {
@@ -41,8 +43,8 @@ class Bullet {
     }
 
     update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
+        this.x += this.velocityX;
+        this.y += this.velocityY;
     }
 
     draw() {
