@@ -3,12 +3,12 @@ var wall = [];
 var weapon = new Weapon();
 // var bullets = new Array();
 var bullet = new Bullet();
+// var ammunition = new Array();
 
 document.addEventListener("keyup", function (event) {
     if (event.keyCode == 37) {
-        bullet.getReady();
+        // ammunition.push(new Bullet();
         bullet.fire();
-        weapon.color = randomWeaponColor();
     }
 })
 
@@ -34,7 +34,7 @@ function update() {
 }
 
 function updateBullet() {
-    
+
 }
 
 

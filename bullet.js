@@ -22,6 +22,8 @@ class Bullet {
     }
 
     fire() {
+        bullet.getReady();
+        weapon.color = randomWeaponColor();
         if (this.canFire){
             this.velocityX = -5;
             this.isMovingLeft = true;
