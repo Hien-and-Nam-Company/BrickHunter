@@ -64,7 +64,7 @@ function handleAppend(row, col) {
     wallDraw();
 }
 
-function wallUpdate() {
+function updateWall() {
     checkPullDown();
     checkPullLeft();
 }

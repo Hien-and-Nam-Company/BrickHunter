@@ -1,6 +1,7 @@
 var brickSide = 30;
 var wall = [];
 var weapon = new Weapon();
+// var bullets = new Array();
 var bullet = new Bullet();
 
 document.addEventListener("keyup", function (event) {
@@ -19,7 +20,7 @@ function draw() {
 
 function update() {
     bullet.update();
-    wallUpdate();
+    updateWall();
     handleBulletAndWall();
 }
 

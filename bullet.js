@@ -11,7 +11,10 @@ class Bullet {
         this.canFire = false;
     }
 
-  //  updatePosition(this.x += this.vx;)
+    // updatePosition() {
+    //     this.x += this.velocityX;
+    // }
+
 
     getReadyForNextShot(value) {
         // if (something)
