@@ -30,7 +30,14 @@ document.addEventListener("keydown", function (event) {
 function draw() {
     weapon.draw();
     drawWall();
-    bullet.draw();
+    drawAmmunition();
+}
+
+function drawAmmunition() {
+    for (let index = ammunition.length - 1; index > -1; -- index) {
+        let bullet = ammunition[index];
+        bullet.draw();
+    }
 }
 
 function update() {
@@ -39,10 +46,12 @@ function update() {
     handleBulletAndWall();
 }
 
-function updateBullet() {
-
-}
-
+// function updateAmmunition () {
+//     for (let index = ammunition.length - 1; index > -1; -- index) {
+//         let bullet = ammunition[index];
+//         bullet.update();
+//     }
+// }
 
 function loop() {
     clearCanvas();
