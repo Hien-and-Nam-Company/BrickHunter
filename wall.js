@@ -34,7 +34,13 @@ function drawWall() {
     }
 }
 
-function collideBulletAndWall(bullet) {
+function updateWall() {
+    checkPullDown();
+    checkPullLeft();
+}
+
+
+function bulletCollideWall(bullet) {
     for (let row = 0; row < totalOfRows; row++) {
         for (let col = 0; col < maximumOfColumns; col++) {
             if (Physics.collision(wall[row][col], bullet) && wall[row][col].isVisual) {
@@ -52,7 +58,7 @@ function collideBulletAndWall(bullet) {
 
 function destroyWall(row, col, bullet) {
     wall[row][col].setVisual(false);
-    checkAround(row, col, bullet.color);
+    checkAllAround(row, col, bullet.color);
 }
 
 function appendNewBrick(row, col, bullet) {
@@ -63,12 +69,9 @@ function appendNewBrick(row, col, bullet) {
     drawWall();
 }
 
-function updateWall() {
-    checkPullDown();
-    checkPullLeft();
-}
 
-function checkAround(row, col, color) {
+
+function checkAllAround(row, col, color) {
     checkUp(row, col, color);
     checkDown(row, col, color);
     checkLeft(row, col, color);
@@ -79,7 +82,7 @@ function checkUp(row, col, color) {
     if (row > 0) {
         if (wall[row - 1][col].isVisual && wall[row - 1][col].color == color) {
             wall[row - 1][col].setVisual(false);
-            checkAround(row - 1, col, color);
+            checkAllAround(row - 1, col, color);
         }
     }
 }
@@ -88,7 +91,7 @@ function checkDown(row, col, color) {
     if (row < totalOfRows - 1) {
         if (wall[row + 1][col].isVisual && wall[row + 1][col].color == color) {
             wall[row + 1][col].setVisual(false);
-            checkAround(row + 1, col, color);
+            checkAllAround(row + 1, col, color);
         }
     }
 }
@@ -97,7 +100,7 @@ function checkLeft(row, col, color) {
     if (col > 0) {
         if (!wall[row][col - 1].isVisual && wall[row][col - 1].color == color) {
             wall[row][col - 1].setVisual(false);
-            checkAround(row - 1, col, color);
+            checkAllAround(row - 1, col, color);
         }
     }
 }
@@ -106,7 +109,7 @@ function checkRight(row, col, color) {
     if (row < totalOfRows - 1) {
         if (!wall[row][col + 1].isVisual && wall[row][col + 1].color == color) {
             wall[row][col + 1].setVisual(false);
-            checkAround(row, col + 1, color);
+            checkAllAround(row, col + 1, color);
         }
     }
 }
