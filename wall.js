@@ -23,7 +23,6 @@ function drawWall() {
                 context.beginPath();
                 context.rect(wall[row][col].x, wall[row][col].y, brickSide, brickSide);
                 context.strokeStyle = 'black';
-                // context.lineWidth = 5;
                 context.setLineDash([0]);
                 context.stroke();
                 context.fillStyle = wall[row][col].color;
@@ -68,8 +67,6 @@ function appendNewBrick(row, col, bullet) {
     }
     drawWall();
 }
-
-
 
 function checkAllAround(row, col, color) {
     checkUp(row, col, color);
