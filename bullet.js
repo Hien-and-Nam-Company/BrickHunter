@@ -10,16 +10,17 @@ class Bullet {
         this.isDroppingDown = false;
     }
 
-    getReady() {
+    fire() {
         this.x = weapon.x + 10;
         this.y = weapon.y + weapon.height / 2 - 15;
         this.color = weapon.color;
-    }
-
-    fire() {
-        bullet.getReady();
         this.velocityX = -5;
         this.isMovingLeft = true;
+    }
+
+    update() {
+        this.x += this.velocityX;
+        this.y += this.velocityY;
     }
 
     stopMovingLeft() {
@@ -37,11 +38,6 @@ class Bullet {
 
     disappear() {
         this.y = canvas.height + brickSide;
-    }
-
-    update() {
-        this.x += this.velocityX;
-        this.y += this.velocityY;
     }
 
     draw() {
