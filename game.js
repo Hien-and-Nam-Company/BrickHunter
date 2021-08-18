@@ -43,18 +43,17 @@ function drawAmmunition() {
 }
 
 function update() {
-
-    bullet.update();
+    updateAmmunition();
     updateWall();
     handleBulletAndWall();
 }
 
-// function updateAmmunition () {
-//     for (let index = ammunition.length - 1; index > -1; -- index) {
-//         let bullet = ammunition[index];
-//         bullet.update();
-//     }
-// }
+function updateAmmunition () {
+    for (let index = ammunition.length - 1; index > -1; -- index) {
+        let bullet = ammunition[index];
+        bullet.update();
+    }
+}
 
 function loop() {
     clearCanvas();
