@@ -2,14 +2,12 @@ var brickSide = 30;
 var wall = [];
 var weapon = new Weapon();
 var ammunition = new Array();
-ammunition.push(new Bullet());
 
 document.addEventListener("keyup", function (event) {
     if (event.keyCode == 37) {
-        ammunition.push(new Bullet());
-        for (let i = ammunition.length - 1; i > -1; i--) {
-            ammunition[i].fire();
-        }
+        let x = weapon.x + 10;
+        let y = weapon.y + weapon.height / 2 - 15;
+        ammunition.push(new Bullet(x, y, -5, 0, weapon.color));
         weapon.color = randomWeaponColor();
     }
 })

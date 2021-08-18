@@ -1,22 +1,22 @@
 class Bullet {
-    constructor() {
-        this.x;
-        this.y;
-        this.color;
+    constructor(x, y, vx, vy, color) {
+        this.x = x;
+        this.y = y;
+        this.velocityX = vx;
+        this.velocityY = vy;
+        this.color = color;
         this.side = brickSide - 3;
-        this.velocityX = 0;
-        this.velocityY = 0;
         this.isMovingLeft = false;
         this.isDroppingDown = false;
     }
 
-    fire() {
-        this.x = weapon.x + 10;
-        this.y = weapon.y + weapon.height / 2 - 15;
-        this.color = weapon.color;
-        this.velocityX = -5;
-        this.isMovingLeft = true;
-    }
+    // fire() {
+    //     this.x = ;
+    //     this.y = ;
+    //     this.color = weapon.color;
+    //     this.velocityX = ;
+    //     this.isMovingLeft = true;
+    // }
 
     update() {
         this.x += this.velocityX;
