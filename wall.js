@@ -34,14 +34,14 @@ function drawWall() {
     }
 }
 
-function handleBulletAndWall(bullet) {
+function collideBulletAndWall(bullet) {
     for (let row = 0; row < totalOfRows; row++) {
         for (let col = 0; col < maximumOfColumns; col++) {
             if (Physics.collision(wall[row][col], bullet) && wall[row][col].isVisual) {
                 if (wall[row][col].color == bullet.color) {
-                    handleDestroy(row, col, bullet);
+                    destroyWall(row, col, bullet);
                 } else if (wall[row][col].y == bullet.y) {
-                    handleAppend(row, col, bullet);
+                    appendNewBrick(row, col, bullet);
                 }
                 bullet.disappear();
                 drawWall();
@@ -50,12 +50,12 @@ function handleBulletAndWall(bullet) {
     }
 }
 
-function handleDestroy(row, col, bullet) {
+function destroyWall(row, col, bullet) {
     wall[row][col].setVisual(false);
     checkAround(row, col, bullet.color);
 }
 
-function handleAppend(row, col, bullet) {
+function appendNewBrick(row, col, bullet) {
     if (col < 9) {
         wall[row][col + 1].setVisual(true);
         wall[row][col + 1].setColor(bullet.color);
@@ -74,7 +74,6 @@ function checkAround(row, col, color) {
     checkLeft(row, col, color);
     checkRight(row, col, color);
 }
-
 
 function checkUp(row, col, color) {
     if (row > 0) {
@@ -141,24 +140,4 @@ function swapBrick(firstBrick, secondBrick) {
 
     secondBrick.color = color;
     secondBrick.isVisual = isVisual;
-}
-
-function colorEffect(brickColor, bulletColor) {
-    if (brickColor.color == 'green' && bulletColor == 'yellow') {
-        brickColor.setColor('blue');
-    } else if (brickColor.color == 'green' && bulletColor == 'blue') {
-        brickColor.setColor('yellow');
-    }
-
-    else if (brickColor.color == 'orange' && bulletColor == 'red') {
-        brickColor.setColor('yellow');
-    } else if (brickColor.color == 'orange' && bulletColor == 'yellow') {
-        brickColor.setColor('red');
-    }
-
-    else if (brickColor.color == 'purple' && bulletColor == 'blue') {
-        brickColor.setColor('red');
-    } else if (brickColor.color == 'purple' && bulletColor == 'red') {
-        brickColor.setColor('blue');
-    }
 }
