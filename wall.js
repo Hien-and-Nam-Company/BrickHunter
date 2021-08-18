@@ -34,14 +34,14 @@ function drawWall() {
     }
 }
 
-function handleBulletAndWall() {
+function handleBulletAndWall(bullet) {
     for (let row = 0; row < totalOfRows; row++) {
         for (let col = 0; col < maximumOfColumns; col++) {
             if (Physics.collision(wall[row][col], bullet) && wall[row][col].isVisual) {
                 if (wall[row][col].color == bullet.color) {
-                    handleDestroy(row, col);
+                    handleDestroy(row, col, bullet);
                 } else if (wall[row][col].y == bullet.y) {
-                    handleAppend(row, col);
+                    handleAppend(row, col, bullet);
                 }
                 bullet.disappear();
                 drawWall();
@@ -50,12 +50,12 @@ function handleBulletAndWall() {
     }
 }
 
-function handleDestroy(row, col) {
+function handleDestroy(row, col, bullet) {
     wall[row][col].setVisual(false);
     checkAround(row, col, bullet.color);
 }
 
-function handleAppend(row, col) {
+function handleAppend(row, col, bullet) {
     if (col < 9) {
         wall[row][col + 1].setVisual(true);
         wall[row][col + 1].setColor(bullet.color);

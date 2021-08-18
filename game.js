@@ -28,7 +28,7 @@ document.addEventListener("keydown", function (event) {
 function update() {
     updateAmmunition();
     updateWall();
-    handleBulletAndWall();
+    handleBulletAndWall(bullet);
 }
 
 function updateAmmunition () {
