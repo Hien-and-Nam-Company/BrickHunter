@@ -3,15 +3,15 @@ var wall = [];
 var weapon = new Weapon();
 var ammunition = new Array();
 ammunition.push(new Bullet());
-var bullet = ammunition[0];
+// var bullet = ammunition[0];
 
 document.addEventListener("keyup", function (event) {
     if (event.keyCode == 37) {
         ammunition.push(new Bullet());
-        // for (let index = ammunition.length - 1; index > -1; -- index) {
-        //     ammunition[index].fire();
-        // }
-        bullet.fire();
+        for (let index = ammunition.length - 1; index > -1; -- index) {
+            ammunition[index].fire();
+        }
+        // bullet.fire();
         weapon.color = randomWeaponColor();
     }
 })
@@ -26,29 +26,31 @@ document.addEventListener("keydown", function (event) {
 })
 
 function update() {
+    // bullet.update();
     updateAmmunition();
     updateWall();
-    handleBulletAndWall(bullet);
+    for (let index = ammunition.length - 1; index > -1; -- index) {
+        handleBulletAndWall(ammunition[index]);
+    }
 }
 
 function updateAmmunition () {
-    // for (let index = ammunition.length - 1; index > -1; -- index) {
-    //     ammunition[index].update();
-    // }
-    bullet.update();
+    for (let index = ammunition.length - 1; index > -1; -- index) {
+        ammunition[index].update();
+    }
 }
 
 function draw() {
     weapon.draw();
     drawWall();
     drawAmmunition();
+    // bullet.draw();
 }
 
 function drawAmmunition() {
-    // for (let index = ammunition.length - 1; index > -1; -- index) {
-    //     ammunition[index].draw();
-    // }
-    bullet.draw();
+    for (let index = ammunition.length - 1; index > -1; -- index) {
+        ammunition[index].draw();
+    }
 }
 
 function loop() {
@@ -57,7 +59,6 @@ function loop() {
     draw();
     requestAnimationFrame(loop);
 }
-
 
 prescribeWall();
 loop();
