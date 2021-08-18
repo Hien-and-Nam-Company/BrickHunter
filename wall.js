@@ -44,7 +44,6 @@ function handleBulletAndWall() {
                     handleAppend(row, col);
                 }
                 bullet.disappear();
-                bullet.getReadyForNextShot();
                 drawWall();
             }
         }

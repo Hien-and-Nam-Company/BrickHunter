@@ -8,26 +8,23 @@ class Bullet {
         this.velocityY = 0;
         this.isMovingLeft = false;
         this.isDroppingDown = false;
-        this.canFire = false;
     }
 
     // updatePosition() {
     //     this.x += this.velocityX;
     // }
 
-
-    getReadyForNextShot(value) {
-        // if (something)
-        this.canFire = true;
+    getReady() {
+        this.x = weapon.x + 10;
+        this.y = weapon.y + weapon.height / 2 - 15;
+        this.color = weapon.color;
     }
 
     fire() {
         bullet.getReady();
         weapon.color = randomWeaponColor();
-        if (this.canFire){
-            this.velocityX = -5;
-            this.isMovingLeft = true;
-        }
+        this.velocityX = -5;
+        this.isMovingLeft = true;
     }
 
     stopMovingLeft() {
@@ -62,11 +59,6 @@ class Bullet {
         context.closePath();
     }
 
-    getReady() {
-        this.x = weapon.x + 10;
-        this.y = weapon.y + weapon.height / 2 - 15;
-        this.color = weapon.color;
-        this.canFire = true;
-    }
+
 
 }
