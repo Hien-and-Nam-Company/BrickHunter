@@ -7,8 +7,8 @@ ammunition.push(new Bullet());
 document.addEventListener("keyup", function (event) {
     if (event.keyCode == 37) {
         ammunition.push(new Bullet());
-        for (let index = ammunition.length - 1; index > -1; -- index) {
-            ammunition[index].fire();
+        for (let i = ammunition.length - 1; i > -1; i--) {
+            ammunition[i].fire();
         }
         weapon.color = randomWeaponColor();
     }
@@ -26,14 +26,14 @@ document.addEventListener("keydown", function (event) {
 function update() {
     updateAmmunition();
     updateWall();
-    for (let index = ammunition.length - 1; index > -1; -- index) {
-        handleBulletAndWall(ammunition[index]);
+    for (let i = ammunition.length - 1; i > -1; i--) {
+        handleBulletAndWall(ammunition[i]);
     }
 }
 
 function updateAmmunition () {
-    for (let index = ammunition.length - 1; index > -1; -- index) {
-        ammunition[index].update();
+    for (let i = ammunition.length - 1; i > -1; i--) {
+        ammunition[i].update();
     }
 }
 
@@ -44,8 +44,8 @@ function draw() {
 }
 
 function drawAmmunition() {
-    for (let index = ammunition.length - 1; index > -1; -- index) {
-        ammunition[index].draw();
+    for (let i = ammunition.length - 1; i > -1; i--) {
+        ammunition[i].draw();
     }
 }
 
