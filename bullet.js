@@ -10,14 +10,6 @@ class Bullet {
         this.isDroppingDown = false;
     }
 
-    // fire() {
-    //     this.x = ;
-    //     this.y = ;
-    //     this.color = weapon.color;
-    //     this.velocityX = ;
-    //     this.isMovingLeft = true;
-    // }
-
     update() {
         this.x += this.velocityX;
         this.y += this.velocityY;
