@@ -58,5 +58,6 @@ function loop() {
     requestAnimationFrame(loop);
 }
 
+
 prescribeWall();
 loop();
