@@ -5,15 +5,17 @@ var weapon = new Weapon();
 
 var ammunition = new Array();
 ammunition.push(new Bullet());
+// ammunition.push(new Bullet());
 var bullet = ammunition[0];
 
 document.addEventListener("keyup", function (event) {
     if (event.keyCode == 37) {
 
-        // ammunition.push(new Bullet();
+        // // ammunition.push(new Bullet();
         // for (let index = ammunition.length - 1; index > -1; -- index) {
         //     let bullet = ammunition[index];
             bullet.fire();
+            weapon.color = randomWeaponColor();
         // }
     }
 })
@@ -41,6 +43,7 @@ function drawAmmunition() {
 }
 
 function update() {
+
     bullet.update();
     updateWall();
     handleBulletAndWall();

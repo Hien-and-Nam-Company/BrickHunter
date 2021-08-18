@@ -10,10 +10,6 @@ class Bullet {
         this.isDroppingDown = false;
     }
 
-    // updatePosition() {
-    //     this.x += this.velocityX;
-    // }
-
     getReady() {
         this.x = weapon.x + 10;
         this.y = weapon.y + weapon.height / 2 - 15;
@@ -22,7 +18,6 @@ class Bullet {
 
     fire() {
         bullet.getReady();
-        weapon.color = randomWeaponColor();
         this.velocityX = -5;
         this.isMovingLeft = true;
     }
