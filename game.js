@@ -35,7 +35,7 @@ function updateAmmunition() {
 
 function updateCollision() {
     for (let i = ammunition.length - 1; i > -1; i--) {
-        bulletCollideWall(ammunition[i]);
+        wallIsCollidedBy(ammunition[i]);
     }
 }
 

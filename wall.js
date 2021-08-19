@@ -58,7 +58,7 @@ function shrinkLeft() {
     }
 }
 
-function bulletCollideWall(bullet) {
+function wallIsCollidedBy(bullet) {
     for (let row = 0; row < totalOfRows; row++) {
         for (let col = 0; col < maximumOfColumns; col++) {
             if (Physics.collision(wall[row][col], bullet) && wall[row][col].isVisual) {
