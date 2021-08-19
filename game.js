@@ -1,5 +1,3 @@
-var brickSide = 30;
-var wall = [];
 var weapon = new Weapon();
 var ammunition = new Array();
 
