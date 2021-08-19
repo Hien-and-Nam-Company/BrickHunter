@@ -24,14 +24,18 @@ document.addEventListener("keydown", function (event) {
 function update() {
     updateAmmunition();
     updateWall();
+    updateCollision();
+}
+
+function updateAmmunition() {
     for (let i = ammunition.length - 1; i > -1; i--) {
-        bulletCollideWall(ammunition[i]);
+        ammunition[i].update();
     }
 }
 
-function updateAmmunition () {
+function updateCollision() {
     for (let i = ammunition.length - 1; i > -1; i--) {
-        ammunition[i].update();
+        bulletCollideWall(ammunition[i]);
     }
 }
 
