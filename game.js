@@ -21,7 +21,7 @@ document.addEventListener("keydown", function (event) {
 
 function update() {
     updateAmmunition();
-    updateBricks();
+    updateWall();
     updateCollision();
 }
 

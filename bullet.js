@@ -8,6 +8,7 @@ class Bullet {
         this.side = brickSide - 3;
         this.isMovingLeft = false;
         this.isDroppingDown = false;
+<<<<<<< HEAD
     }
 
     getDirection() {
@@ -24,6 +25,8 @@ class Bullet {
     setVelocity(vx, vy) {
         this.velocityX = vx;
         this.velocityY = vy;
+=======
+>>>>>>> parent of 9a373f8 (getDirection)
     }
 
     update() {

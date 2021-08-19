@@ -2,20 +2,6 @@ var maximumOfColumns = 10;
 var amountOfColumns = 7;
 var totalOfRows = 14;
 
-// function attackedHorizontallyBy(bullet) {
-//     if bullet.
-// }
-
-
-
-
-
-
-
-
-
-
-
 function checkAllAround(row, col, color) {
     checkUp(row, col, color);
     checkDown(row, col, color);
@@ -59,7 +45,7 @@ function checkRight(row, col, color) {
     }
 }
 
-function swapBricks(firstBrick, secondBrick) {
+function swapBrick(firstBrick, secondBrick) {
     let color = firstBrick.color;
     let isVisual = firstBrick.isVisual;
 
@@ -127,7 +113,7 @@ function drawWall() {
     }
 }
 
-function updateBricks() {
+function updateWall() {
     shrinkDown();
     shrinkLeft();
 }
@@ -136,7 +122,7 @@ function shrinkDown() {
     for (let row = totalOfRows - 1; row > 0; row--) {
         for (let col = 0; col < maximumOfColumns -1 ; col++) {
             if (wall[row][col].isVisual == false) {
-                swapBricks(wall[row][col], wall[row - 1][col]);
+                swapBrick(wall[row][col], wall[row - 1][col]);
             }
         }
     }
@@ -146,7 +132,7 @@ function shrinkLeft() {
     for (let row = totalOfRows - 1; row > 0; row--) {
         for (let col = 0; col < maximumOfColumns - 1; col++) {
             if (wall[row][col].isVisual == false) {
-                swapBricks(wall[row][col], wall[row][col + 1]);
+                swapBrick(wall[row][col], wall[row][col + 1]);
             }
         }
     }
