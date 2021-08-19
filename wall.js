@@ -109,6 +109,36 @@ function swapBrick(firstBrick, secondBrick) {
     secondBrick.isVisual = isVisual;
 }
 
+<<<<<<< HEAD
+=======
+function wallIsCollidedBy(bullet) {
+    for (let row = 0; row < totalOfRows; row++) {
+        for (let col = 0; col < maximumOfColumns; col++) {
+            if (Physics.collision(wall[row][col], bullet) && wall[row][col].isVisual) {
+                if (wall[row][col].color == bullet.color) {
+                    removeBricks(row, col, bullet);
+                } else if (wall[row][col].y == bullet.y) {
+                    appendNewBricks(row, col, bullet);
+                }
+                bullet.disappear();
+            }
+        }
+    }
+}
+
+function removeBricks(row, col, bullet) {
+    wall[row][col].setVisual(false);
+    checkAllAround(row, col, bullet.color);
+}
+
+function appendNewBricks(row, col, bullet) {
+    if (col < 9) {
+        wall[row][col + 1].setVisual(true);
+        wall[row][col + 1].setColor(bullet.color);
+    }
+}
+
+>>>>>>> parent of 400db01 (Revert "Update wall.js")
 function prescribeWall() {
     for (let row = 0; row < totalOfRows; row++) {
         wall[row] = [];
