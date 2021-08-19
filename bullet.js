@@ -29,6 +29,14 @@ class Bullet {
 >>>>>>> parent of 9a373f8 (getDirection)
     }
 
+    // fire() {
+    //     this.x = ;
+    //     this.y = ;
+    //     this.color = weapon.color;
+    //     this.velocityX = ;
+    //     this.isMovingLeft = true;
+    // }
+
     update() {
         this.x += this.velocityX;
         this.y += this.velocityY;
