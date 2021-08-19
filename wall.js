@@ -34,10 +34,29 @@ function drawWall() {
 }
 
 function updateWall() {
-    checkPullDown();
-    checkPullLeft();
+    shrinkDown();
+    shrinkLeft();
 }
 
+function shrinkDown() {
+    for (let row = totalOfRows - 1; row > 0; row--) {
+        for (let col = 0; col < maximumOfColumns -1 ; col++) {
+            if (wall[row][col].isVisual == false) {
+                swapBrick(wall[row][col], wall[row - 1][col]);
+            }
+        }
+    }
+}
+
+function shrinkLeft() {
+    for (let row = totalOfRows - 1; row > 0; row--) {
+        for (let col = 0; col < maximumOfColumns - 1; col++) {
+            if (wall[row][col].isVisual == false) {
+                swapBrick(wall[row][col], wall[row][col + 1]);
+            }
+        }
+    }
+}
 
 function bulletCollideWall(bullet) {
     for (let row = 0; row < totalOfRows; row++) {
@@ -111,25 +130,7 @@ function checkRight(row, col, color) {
     }
 }
 
-function checkPullDown() {
-    for (let row = totalOfRows - 1; row > 0; row--) {
-        for (let col = 0; col < maximumOfColumns -1 ; col++) {
-            if (wall[row][col].isVisual == false) {
-                swapBrick(wall[row][col], wall[row - 1][col]);
-            }
-        }
-    }
-}
 
-function checkPullLeft() {
-    for (let row = totalOfRows - 1; row > 0; row--) {
-        for (let col = 0; col < maximumOfColumns - 1; col++) {
-            if (wall[row][col].isVisual == false) {
-                swapBrick(wall[row][col], wall[row][col + 1]);
-            }
-        }
-    }
-}
 
 function swapBrick(firstBrick, secondBrick) {
     let color = firstBrick.color;
