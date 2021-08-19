@@ -6,8 +6,14 @@ class Bullet {
         this.velocityY = vy;
         this.color = color;
         this.side = brickSide - 3;
-        this.isMovingLeft = false;
-        this.isDroppingDown = false;
+        this.direction;
+    }
+
+    getDirection() {
+        if (this.velocityX != 0)
+            this.direction = 'h'; // horizontally
+        if (this.velocityY != 0)
+            this.direction = 'v'; // vertically
     }
 
     update() {
