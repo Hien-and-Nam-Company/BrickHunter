@@ -61,9 +61,9 @@ function wallIsCollidedBy(bullet) {
         for (let col = 0; col < maximumOfColumns; col++) {
             if (Physics.collision(wall[row][col], bullet) && wall[row][col].isVisual) {
                 if (wall[row][col].color == bullet.color) {
-                    removeBricks(row, col, bullet);
+                    destroyWall(row, col, bullet);
                 } else if (wall[row][col].y == bullet.y) {
-                    appendNewBricks(row, col, bullet);
+                    appendNewBrick(row, col, bullet);
                 }
                 bullet.disappear();
             }
@@ -71,12 +71,12 @@ function wallIsCollidedBy(bullet) {
     }
 }
 
-function removeBricks(row, col, bullet) {
+function destroyWall(row, col, bullet) {
     wall[row][col].setVisual(false);
     checkAllAround(row, col, bullet.color);
 }
 
-function appendNewBricks(row, col, bullet) {
+function appendNewBrick(row, col, bullet) {
     if (col < 9) {
         wall[row][col + 1].setVisual(true);
         wall[row][col + 1].setColor(bullet.color);
