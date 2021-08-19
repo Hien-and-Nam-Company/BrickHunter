@@ -6,36 +6,15 @@ class Bullet {
         this.velocityY = vy;
         this.color = color;
         this.side = brickSide - 3;
-        this.isMovingLeft = false;
-        this.isDroppingDown = false;
-<<<<<<< HEAD
+        this.direction;
     }
 
     getDirection() {
-        if (this.velocityX != 0) {
-            return 'h'; // horizontally
-            break;
-        }
-        if (this.velocityY != 0) {
-            return 'v'; // vertically
-            break;
-        }
+        if (this.velocityX != 0)
+            this.direction = 'h'; // horizontally
+        if (this.velocityY != 0)
+            this.direction = 'v'; // vertically
     }
-
-    setVelocity(vx, vy) {
-        this.velocityX = vx;
-        this.velocityY = vy;
-=======
->>>>>>> parent of 9a373f8 (getDirection)
-    }
-
-    // fire() {
-    //     this.x = ;
-    //     this.y = ;
-    //     this.color = weapon.color;
-    //     this.velocityX = ;
-    //     this.isMovingLeft = true;
-    // }
 
     update() {
         this.x += this.velocityX;
@@ -61,6 +40,7 @@ class Bullet {
 
     draw() {
         context.beginPath();
+        // context.arc(this.x, this.y, this.r, 0, Math.PI * 2);
         context.rect(this.x, this.y, this.side, this.side);
         context.stroke();
         context.fillStyle = this.color;
