@@ -16,9 +16,13 @@ class Bullet {
             return 'v'; // vertically
     }
 
-    update() {
+    updatePosition() {
         this.x += this.velocityX;
         this.y += this.velocityY;
+    }
+
+    getRowPosition() {
+        return this.x / (maxNumOfRows + 2)
     }
 
     stopMovingLeft() {

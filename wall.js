@@ -13,10 +13,9 @@ var maxNumOfRows = 14;
 // }
 
 
-
-
-
-
+// function getAttackedPosition(bullet) {
+//     return bullet.x / (maxNumOfRows + 2);
+// }
 
 
 
