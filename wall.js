@@ -1,13 +1,16 @@
-var maximumOfColumns = 10;
-var amountOfColumns = 7;
-var totalOfRows = 14;
-
-// function attackedHorizontallyBy(bullet) {
+var initialNumOfColumns = 7;
+var maxNumOfColumns = 10;
+var maxNumOfRows = 14;
+//
+// function attackedHorizontally(bullet) {
 //     if (bullet.getDirection = 'h') {
 //
 //     }
 // }
-
+//
+// function destroyedHorizontally(bullet) {
+//     for (let i = )
+// }
 
 
 
@@ -35,7 +38,7 @@ function checkUp(row, col, color) {
 }
 
 function checkDown(row, col, color) {
-    if (row < totalOfRows - 1) {
+    if (row < maxNumOfRows - 1) {
         if (wall[row + 1][col].isVisual && wall[row + 1][col].color == color) {
             wall[row + 1][col].setVisual(false);
             checkAllAround(row + 1, col, color);
@@ -53,7 +56,7 @@ function checkLeft(row, col, color) {
 }
 
 function checkRight(row, col, color) {
-    if (row < totalOfRows - 1) {
+    if (row < maxNumOfRows - 1) {
         if (!wall[row][col + 1].isVisual && wall[row][col + 1].color == color) {
             wall[row][col + 1].setVisual(false);
             checkAllAround(row, col + 1, color);
@@ -73,8 +76,8 @@ function swapBricks(firstBrick, secondBrick) {
 }
 
 function wallIsCollidedBy(bullet) {
-    for (let row = 0; row < totalOfRows; row++) {
-        for (let col = 0; col < maximumOfColumns; col++) {
+    for (let row = 0; row < maxNumOfRows; row++) {
+        for (let col = 0; col < maxNumOfColumns; col++) {
             if (Physics.collision(wall[row][col], bullet) && wall[row][col].isVisual) {
                 if (wall[row][col].color == bullet.color) {
                     removeBricks(row, col, bullet);
@@ -100,10 +103,10 @@ function appendNewBricks(row, col, bullet) {
 }
 
 function prescribeWall() {
-    for (let row = 0; row < totalOfRows; row++) {
+    for (let row = 0; row < maxNumOfRows; row++) {
         wall[row] = [];
-        for (let col = 0; col < maximumOfColumns; col++) {
-            if (col < amountOfColumns) {
+        for (let col = 0; col < maxNumOfColumns; col++) {
+            if (col < initialNumOfColumns) {
                 wall[row][col] = new Brick(row, col, randomColor(), true);
             } else {
                 wall[row][col] = new Brick(row, col, 'black', false);
@@ -113,7 +116,7 @@ function prescribeWall() {
 }
 
 function drawWall() {
-    for (let row = 0; row < totalOfRows; row++) {
+    for (let row = 0; row < maxNumOfRows; row++) {
         for (let col = 0; col < 10; col++) {
             if (wall[row][col].isVisual) {
                 context.beginPath();
@@ -135,8 +138,8 @@ function updateBricks() {
 }
 
 function shrinkDown() {
-    for (let row = totalOfRows - 1; row > 0; row--) {
-        for (let col = 0; col < maximumOfColumns -1 ; col++) {
+    for (let row = maxNumOfRows - 1; row > 0; row--) {
+        for (let col = 0; col < maxNumOfColumns -1 ; col++) {
             if (wall[row][col].isVisual == false) {
                 swapBricks(wall[row][col], wall[row - 1][col]);
             }
@@ -145,8 +148,8 @@ function shrinkDown() {
 }
 
 function shrinkLeft() {
-    for (let row = totalOfRows - 1; row > 0; row--) {
-        for (let col = 0; col < maximumOfColumns - 1; col++) {
+    for (let row = maxNumOfRows - 1; row > 0; row--) {
+        for (let col = 0; col < maxNumOfColumns - 1; col++) {
             if (wall[row][col].isVisual == false) {
                 swapBricks(wall[row][col], wall[row][col + 1]);
             }
