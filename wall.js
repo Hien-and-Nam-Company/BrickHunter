@@ -3,7 +3,9 @@ var amountOfColumns = 7;
 var totalOfRows = 14;
 
 // function attackedHorizontallyBy(bullet) {
-//     if bullet.
+//     if (bullet.getDirection = 'h') {
+//
+//     }
 // }
 
 

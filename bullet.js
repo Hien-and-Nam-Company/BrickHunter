@@ -10,10 +10,10 @@ class Bullet {
     }
 
     getDirection() {
-        if (this.velocityX != 0)
-            this.direction = 'h'; // horizontally
-        if (this.velocityY != 0)
-            this.direction = 'v'; // vertically
+        if (this.velocityX != 0 && this.velocityY == 0)
+            return 'h'; // horizontally
+        if (this.velocityY != 0 && this.velocityX == 0)
+            return 'v'; // vertically
     }
 
     update() {
