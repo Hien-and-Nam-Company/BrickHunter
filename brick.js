@@ -9,18 +9,16 @@ class Brick {
         this.isBroken = false;
     }
 
-//     // Get the brick coordinate
-//     getBrickCoordinate(col, row) {
-//     var brickX = col * brickwidth;
-//
-//     // X offset for odd rows
-//     if (row % 2) {
-//         brickX += brickwidth/2;
-//     }
-//
-//     var brickX = row * brickheight;
-//     return { brickX: brickx, brickY: bricky };
-// }
+    // Get the brick coordinate
+    getBrickCoordinate(col, row) {
+        var brickX = col * brickWidth;
+        // X offset for odd rows
+        if (row % 2) {
+            brickX += brickWidth/2;
+        }
+        var brickX = row * brickWidth;
+        return { brickX: brickX, brickY: brickY };
+    }
 
     setVisual(isVisual){
         this.isVisual = isVisual;
