@@ -1,6 +1,6 @@
 var canvas = document.getElementById('BrickHunter');
 var context = canvas.getContext('2d');
-var brickSide = 30;
+var brickWidth = 30;
 var grid = [];
 var wallOffset = 50;
 

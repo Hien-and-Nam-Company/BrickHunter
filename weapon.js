@@ -27,11 +27,11 @@ class Weapon {
     }
 
     get canMoveUp() {
-        return this.y >= wallOffset + brickSide - this.height / 3;
+        return this.y >= wallOffset + brickWidth - this.height / 3;
     }
 
     get canMoveDown() {
-        return this.y + this.height <= canvas.height - brickSide + this.height / 3 - brickSide;
+        return this.y + this.height <= canvas.height - brickWidth + this.height / 3 - brickWidth;
     }
 
     moveUp() {

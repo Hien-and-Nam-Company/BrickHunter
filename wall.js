@@ -119,7 +119,7 @@ function drawWall() {
         for (let col = 0; col < 10; col++) {
             if (grid[row][col].isVisual) {
                 context.beginPath();
-                context.rect(grid[row][col].x, grid[row][col].y, brickSide, brickSide);
+                context.rect(grid[row][col].x, grid[row][col].y, brickWidth, brickWidth);
                 context.strokeStyle = 'black';
                 context.setLineDash([0]);
                 context.stroke();

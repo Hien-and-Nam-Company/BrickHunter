@@ -5,7 +5,7 @@ class Bullet {
         this.velocityX = vx;
         this.velocityY = vy;
         this.color = color;
-        this.side = brickSide - 3;
+        this.side = brickWidth - 3;
         this.direction;
     }
 
@@ -39,7 +39,7 @@ class Bullet {
     }
 
     disappear() {
-        this.y = canvas.height + brickSide;
+        this.y = canvas.height + brickWidth;
     }
 
     draw() {
