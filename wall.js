@@ -2,21 +2,6 @@ var initialNumOfColumns = 7;
 var maxNumOfColumns = 10;
 var maxNumOfRows = 14;
 
-// Render bricks
-function renderBricks() {
-    // Left to right
-    for (var j = 0; j < rows; j++) {
-        for (var i = 0; i < columns; i++) {
-            // Get the brick
-            var brick = grid[i][j];
-            // Calculate the brick coordinates
-            var coord = getBrickCoordinate(i, j);
-            // Draw the brick
-            drawBrick(coord.brickX, coord.brickY, brick.type);
-        }
-    }
-}
-
 function initiateWall() {
     for (let row = 0; row < maxNumOfRows; row++) {
         grid[row] = [];
@@ -29,33 +14,6 @@ function initiateWall() {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-//
-// function attackedHorizontally(bullet) {
-//     if (bullet.getDirection = 'h') {
-//
-//     }
-// }
-//
-// function destroyedHorizontally(bullet) {
-//     for (let i = )
-// }
-
-
-// function getAttackedPosition(bullet) {
-//     return bullet.x / (maxNumOfRows + 2);
-// }
-
-
-
 
 function checkAllAround(row, col, color) {
     checkUp(row, col, color);
