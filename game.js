@@ -57,5 +57,5 @@ function loop() {
     requestAnimationFrame(loop);
 }
 
-initiateWall();
+renderWall();
 loop();

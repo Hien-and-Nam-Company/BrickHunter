@@ -2,7 +2,7 @@ var initialNumOfColumns = 7;
 var maxNumOfColumns = 10;
 var maxNumOfRows = 14;
 
-function initiateWall() {
+function renderWall() {
     for (let row = 0; row < maxNumOfRows; row++) {
         grid[row] = [];
         for (let col = 0; col < maxNumOfColumns; col++) {
@@ -95,8 +95,6 @@ function appendNewBricks(row, col, bullet) {
         grid[row][col + 1].setColor(bullet.color);
     }
 }
-
-
 
 function drawWall() {
     for (let row = 0; row < maxNumOfRows; row++) {
