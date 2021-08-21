@@ -21,10 +21,6 @@ class Bullet {
         this.y += this.velocityY;
     }
 
-    getRowPosition() {
-        return this.x / (maxNumOfRows + 2)
-    }
-
     stopMovingLeft() {
         this.velocityX = 0;
     }

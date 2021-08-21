@@ -7,7 +7,6 @@ document.addEventListener("keyup", function (event) {
         let y = weapon.y + weapon.height / 2 - 15;
         ammunition.push(new Bullet(x, y, -5, 0, weapon.color));
         weapon.color = randomWeaponColor();
-
     }
 })
 
