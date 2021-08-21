@@ -1,48 +1,45 @@
 class Bullet {
-    constructor() {
-        this.x;
-        this.y;
-        this.color;
-        this.side = brickSide - 3;
-        this.speedX = 0;
-        this.speedY = 0;
-        this.isMovingLeft = false;
-        this.isDroppingDown = false;
-        this.canFire = false;
+    constructor(x, y, vx, vy, color) {
+        this.x = x;
+        this.y = y;
+        this.velocityX = vx;
+        this.velocityY = vy;
+        this.color = color;
+        this.side = brickWidth - 3;
+        this.direction;
     }
 
-    getReadyForNextShot(value) {
-        // if (something)
-        this.canFire = true;
+    getDirection() {
+        if (this.velocityX != 0 && this.velocityY == 0)
+            return 'h'; // horizontally
+        if (this.velocityY != 0 && this.velocityX == 0)
+            return 'v'; // vertically
     }
 
-    fire() {
-        if (this.canFire){
-            this.speedX = -5;
-            this.isMovingLeft = true;
-        }
+    updatePosition() {
+        this.x += this.velocityX;
+        this.y += this.velocityY;
+    }
+
+    getRowPosition() {
+        return this.x / (maxNumOfRows + 2)
     }
 
     stopMovingLeft() {
-        this.speedX = 0;
+        this.velocityX = 0;
     }
 
     drop() {
-        this.speedY = 5;
+        this.velocityY = 5;
         this.isDroppingDown = true;
     }
 
     stopDropping() {
-        this.speedY = 0;
+        this.velocityY = 0;
     }
 
     disappear() {
-        this.y = canvas.height + brickSide;
-    }
-
-    update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
+        this.y = canvas.height + brickWidth;
     }
 
     draw() {
@@ -53,13 +50,6 @@ class Bullet {
         context.fillStyle = this.color;
         context.fill();
         context.closePath();
-    }
-
-    getReady() {
-        this.x = weapon.x + 10;
-        this.y = weapon.y + weapon.height / 2 - 15;
-        this.color = weapon.color;
-        this.canFire = true;
     }
 
 }

@@ -1,5 +1,8 @@
 var canvas = document.getElementById('BrickHunter');
 var context = canvas.getContext('2d');
+var brickWidth = 30;
+var grid = [];
+var wallOffset = 50;
 
 function clearCanvas() {
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -13,12 +16,3 @@ function randomColor() {
 function randomWeaponColor() {
     return weaponColor[Math.floor(Math.random() * weaponColor.length)];
 }
-
-document.addEventListener("keydown", function (event) {
-    if (event.keyCode == 38) {
-        weapon.moveUp();
-    }
-    if (event.keyCode == 40) {
-        weapon.moveDown();
-    }
-})

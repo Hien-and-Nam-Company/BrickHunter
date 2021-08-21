@@ -1,26 +1,53 @@
-var brickSide = 30;
-var wall = [];
 var weapon = new Weapon();
-var bullet = new Bullet();
+var ammunition = new Array();
 
 document.addEventListener("keyup", function (event) {
     if (event.keyCode == 37) {
-        bullet.getReady();
-        bullet.fire();
+        let x = weapon.x + 10;
+        let y = weapon.y + weapon.height / 2 - 15;
+        ammunition.push(new Bullet(x, y, -5, 0, weapon.color));
         weapon.color = randomWeaponColor();
+
     }
 })
 
-function draw() {
-    weapon.draw();
-    wallDraw();
-    bullet.draw();
-}
+document.addEventListener("keydown", function (event) {
+    if (event.keyCode == 38) {
+        weapon.moveUp();
+    }
+    if (event.keyCode == 40) {
+        weapon.moveDown();
+    }
+})
 
 function update() {
-    bullet.update();
-    wallUpdate();
-    handleBulletAndWall();
+    updateAmmunition();
+    updateBricks();
+    updateCollision();
+}
+
+function updateAmmunition() {
+    for (let i = ammunition.length - 1; i > -1; i--) {
+        ammunition[i].updatePosition();
+    }
+}
+
+function updateCollision() {
+    for (let i = ammunition.length - 1; i > -1; i--) {
+        wallIsCollidedBy(ammunition[i]);
+    }
+}
+
+function draw() {
+    weapon.draw();
+    drawWall();
+    drawAmmunition();
+}
+
+function drawAmmunition() {
+    for (let i = ammunition.length - 1; i > -1; i--) {
+        ammunition[i].draw();
+    }
 }
 
 function loop() {
@@ -30,5 +57,5 @@ function loop() {
     requestAnimationFrame(loop);
 }
 
-wallSetup();
+renderWall();
 loop();
