@@ -4,10 +4,10 @@ var maxNumOfRows = 14;
 var grid = [];
 
 function renderWall() {
-    for (let row = 0; row < maxNumOfRows; row++) {
+    for (let row = 1; row <= maxNumOfRows; row++) {
         grid[row] = [];
-        for (let col = 0; col < maxNumOfColumns; col++) {
-            if (col < initialNumOfColumns) {
+        for (let col = 1; col <= maxNumOfColumns; col++) {
+            if (col <= initialNumOfColumns) {
                 grid[row][col] = new Brick(row, col, randomColor(), true);
             } else {
                 grid[row][col] = new Brick(row, col, 'black', false);
@@ -24,7 +24,7 @@ function checkAllAround(row, col, color) {
 }
 
 function checkUp(row, col, color) {
-    if (row > 0) {
+    if (row > 1) {
         if (grid[row - 1][col].isVisual && grid[row - 1][col].color == color) {
             grid[row - 1][col].setVisual(false);
             checkAllAround(row - 1, col, color);
@@ -42,7 +42,7 @@ function checkDown(row, col, color) {
 }
 
 function checkLeft(row, col, color) {
-    if (col > 0) {
+    if (col > 1) {
         if (!grid[row][col - 1].isVisual && grid[row][col - 1].color == color) {
             grid[row][col - 1].setVisual(false);
             checkAllAround(row - 1, col, color);
@@ -71,8 +71,8 @@ function swapBricks(firstBrick, secondBrick) {
 }
 
 function wallIsCollidedBy(bullet) {
-    for (let row = 0; row < maxNumOfRows; row++) {
-        for (let col = 0; col < maxNumOfColumns; col++) {
+    for (let row = 1; row <= maxNumOfRows; row++) {
+        for (let col = 1; col <= maxNumOfColumns; col++) {
             if (Physics.collision(grid[row][col], bullet) && grid[row][col].isVisual) {
                 if (grid[row][col].color == bullet.color) {
                     console.log("row: "+grid[row][col].row);
@@ -93,15 +93,15 @@ function removeBricks(row, col, bullet) {
 }
 
 function appendNewBricks(row, col, bullet) {
-    if (col < 9) {
+    if (col < maxNumOfColumns) {
         grid[row][col + 1].setVisual(true);
         grid[row][col + 1].setColor(bullet.color);
     }
 }
 
 function drawWall() {
-    for (let row = 0; row < maxNumOfRows; row++) {
-        for (let col = 0; col < maxNumOfColumns; col++) {
+    for (let row = 1; row <= maxNumOfRows; row++) {
+        for (let col = 1; col <= maxNumOfColumns; col++) {
             if (grid[row][col].isVisual) {
                 context.beginPath();
                 context.rect(grid[row][col].x, grid[row][col].y, brickWidth, brickWidth);
@@ -122,8 +122,8 @@ function updateBricks() {
 }
 
 function shrinkDown() {
-    for (let row = maxNumOfRows - 1; row > 0; row--) {
-        for (let col = 0; col < maxNumOfColumns -1 ; col++) {
+    for (let row = maxNumOfRows; row > 1; row--) {
+        for (let col = 1; col < maxNumOfColumns ; col++) {
             if (grid[row][col].isVisual == false) {
                 swapBricks(grid[row][col], grid[row - 1][col]);
             }
@@ -132,8 +132,8 @@ function shrinkDown() {
 }
 
 function shrinkLeft() {
-    for (let row = maxNumOfRows - 1; row > 0; row--) {
-        for (let col = 0; col < maxNumOfColumns - 1; col++) {
+    for (let row = maxNumOfRows; row > 1; row--) {
+        for (let col = 1; col < maxNumOfColumns; col++) {
             if (grid[row][col].isVisual == false) {
                 swapBricks(grid[row][col], grid[row][col + 1]);
             }
