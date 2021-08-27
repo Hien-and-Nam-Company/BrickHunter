@@ -1,6 +1,7 @@
 var initialNumOfColumns = 7;
 var maxNumOfColumns = 10;
 var maxNumOfRows = 14;
+var grid = [];
 
 function renderWall() {
     for (let row = 0; row < maxNumOfRows; row++) {

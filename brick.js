@@ -21,4 +21,15 @@ class Brick {
         this.color = color;
     }
 
+    // getCoordinate(column, row) {
+    //     var tilex = level.x + column * level.tilewidth;
+    //     // X offset for odd or even rows
+    //     if ((row + rowoffset) % 2) {
+    //         tilex += level.tilewidth/2;
+    //     }
+    //
+    //     var tiley = level.y + row * level.rowheight;
+    //     return { tilex: tilex, tiley: tiley };
+    // }
+
 }
