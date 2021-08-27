@@ -75,6 +75,8 @@ function wallIsCollidedBy(bullet) {
         for (let col = 0; col < maxNumOfColumns; col++) {
             if (Physics.collision(grid[row][col], bullet) && grid[row][col].isVisual) {
                 if (grid[row][col].color == bullet.color) {
+                    console.log("row: "+grid[row][col].row);
+                    console.log("col: "+grid[row][col].col);
                     removeBricks(row, col, bullet);
                 } else if (grid[row][col].y == bullet.y) {
                     appendNewBricks(row, col, bullet);
@@ -99,7 +101,7 @@ function appendNewBricks(row, col, bullet) {
 
 function drawWall() {
     for (let row = 0; row < maxNumOfRows; row++) {
-        for (let col = 0; col < 10; col++) {
+        for (let col = 0; col < maxNumOfColumns; col++) {
             if (grid[row][col].isVisual) {
                 context.beginPath();
                 context.rect(grid[row][col].x, grid[row][col].y, brickWidth, brickWidth);
